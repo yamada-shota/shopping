@@ -1,0 +1,54 @@
+header {
+    background-color: #b0c4de;
+    height: 100px;
+    width: 600px;
+}
+
+.shopping-title {
+    font-family: "ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";
+    font-size: 40px;
+    color: white;
+    text-align: center;
+    padding-top: 25px;;
+}
+main {
+    background-color: white;
+    width: 600px;
+    height: 500px;
+}
+.list {
+    padding-top: 50px;
+}
+input[type=text]{
+    padding:0;
+    line-height:28px;
+    height: 30px;
+    text-align: center;
+}
+.item {
+    float: left;
+    padding-left: 50px;
+}
+.price {
+    float: left;
+    padding-left: 50px;
+}
+.price p {
+    float: right;
+    padding: 0 10px;
+}
+.tax {
+    float: left;
+    padding: 10px 0 0 30px;
+}
+footer {
+    background-color: #b0c4de;
+    width: 600px;
+    height: 100px;
+}
+.footer-container {
+    font-family: "ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";
+    font-size: 30px;
+    color: white;
+    padding: 3px 0 0 10px;
+}
