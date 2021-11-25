@@ -12,6 +12,7 @@ header {
     padding-top: 25px;;
 }
 main {
+    font-family: "ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";
     background-color: white;
     width: 600px;
     height: 500px;
@@ -34,10 +35,12 @@ input[type=text]{
     padding-left: 50px;
 }
 .price p {
+    color: #cccccc;
     float: right;
     padding: 0 10px;
 }
 .tax {
+    color: #cccccc;
     float: left;
     padding: 10px 0 0 30px;
 }
