@@ -1,102 +1,17 @@
-
-/* フォント設定 */
-/* aaaaaa */
 body {
     font-family: "ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";
 }
-
-/* ヘッダー背景 */
 header {
     background-color: #e1eec1;
-    height: 80px;
-    width: 600px;
+    color: black;
 }
-/* 編集ボタン */
-.edit {
-    float: left;
-    font-size: 20px;
-    color: #9ba5a0;
-    text-align: left;
-    padding: 10px 0 10px 30px;
+li{
+    list-style: none;
+    width: calc(100%/3);
 }
-/* 買い物リスト */
-.title {
-    font-size: 30px;
-    color: #9ba5a0;
-    text-align: center;
-    padding: 20px 80px 0 10px;
-}
-/* メイン背景 */
-main {
-    background-color: white;
-    width: 600px;
-    height: 500px;
-}
-.main-container {
-    padding-top: 15px;
-}
-.list {
-    padding-top: 15px;
-}
-.item {
-    float: left;
-    padding-left: 50px;
-}
-/* 商品入力 */
-.item-form {
-    padding:0;
-    line-height:28px;
-    height: 30px;
-    text-align: center;
-}
-.price {
-    float: left;
-    padding-left: 50px;
-}
-.price p {
-    color: #9ba5a0;
-    float: right;
-    padding: 0 10px;
-}
-/* 値段入力 */
-.price-form {
-    padding:0;
-    line-height:28px;
-    height: 30px;
-    text-align: center;
-}
-.tax {
-    color: #9ba5a0;
-    float: left;
-    padding: 10px 0 0 30px;
-}
-/*  */
-footer {
-    font-family: "ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";
-    background-color: #e1eec1;
-    width: 600px;
-    height: 100px;
-}
-.sum {
-    float: left;
-    font-size: 30px;
-    color: #9ba5a0;
-    padding-left: 70px;
-}
-.sum-result{
-    float: left;
-    padding: 25px 0 0 80px;
-}
-.sum-result p {
-    font-size: 20px;
-    color: #9ba5a0;
-    float: right;
-    padding-left: 20px;
-}
-.result {
-    padding:0;
-    line-height:40px;
-    height: 50px;
-    width: 200px;
+
+ul{
+    padding: 0;
+    display:flex;
     text-align: center;
 }

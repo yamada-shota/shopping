@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-
-
-
 <html lang="ja">
+
 <head>
   <meta charset="utf-8">
   <title>Shopping</title>
@@ -10,87 +8,27 @@
 </head>
 
 <body>
-    <!-- 買い物リスト ヘッダー -->
   <header>
-    <div class="header-container">
-      <p class="edit">編集</p>
-      <p class="title">買い物リスト</p>
-    </div>
+    <ul>
+      <li>編集</li>
+      <li>買い物リスト</li>
+    </ul>
   </header>
 
-  <!-- 買い物リスト メモ部分 -->
   <main>
-    <div class="main-container">
-      <!-- 商品・値段・消費税 -->
-      <div class="list">
-        <div class="item">
-          <input type="text" class="item-form"/>
-        </div>
-      <div class="price">
-          <input type="text" class="price-form"/>
-          <p>円</p>
-        </div>
-        <div class="tax">
-          <input type="radio" name="tax-form1" value="8%"/> 8%
-          <input type="radio" name="tax-form1" value="10%"/> 10%
-        </div>
-      </div>
-      <!-- 商品・値段・消費税 -->
-      <div class="list">
-        <div class="item">
-          <input type="text" class="item-form"/>
-        </div>
-      <div class="price">
-          <input type="text" class="price-form"/>
-          <p>円</p>
-        </div>
-        <div class="tax">
-          <input type="radio" name="tax-form1" value="8%"/> 8%
-          <input type="radio" name="tax-form1" value="10%"/> 10%
-        </div>
-      </div>
-      <!-- 商品・値段・消費税 -->
-      <div class="list">
-        <div class="item">
-          <input type="text" class="item-form"/>
-        </div>
-      <div class="price">
-          <input type="text" class="price-form"/>
-          <p>円</p>
-        </div>
-        <div class="tax">
-          <input type="radio" name="tax-form1" value="8%"/> 8%
-          <input type="radio" name="tax-form1" value="10%"/> 10%
-        </div>
-      </div>
-      <!-- 商品・値段・消費税 -->
-       <div class="list">
-        <div class="item">
-          <input type="text" class="item-form"/>
-        </div>
-      <div class="price">
-          <input type="text" class="price-form"/>
-          <p>円</p>
-        </div>
-        <div class="tax">
-          <input type="radio" name="tax-form1" value="8%"/> 8%
-          <input type="radio" name="tax-form1" value="10%"/> 10%
-        </div>
-      </div>
-    </div>
+    <ul>
+      <li><input type="text"></li>
+      <li>
+        <input type="text">円
+      </li>
+      <li>
+        <input type="radio" name="tax1">8%
+        <input type="radio" name="tax1">10%
+      </li>
+    </ul>
   </main>
-
-  <!-- 買い物リスト フッター -->
   <footer>
-    <div class="footer-container">
-      <!-- 合計 -->
-        <p class="sum">合計</p>
-      <!-- 合計金額 計算結果表示 -->
-      <div class="sum-result">
-        <input type="text" class="result">
-        <p>円</p>
-      </div>
-    </div>
+
   </footer>
 </body>
 
