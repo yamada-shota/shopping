@@ -1,3 +1,46 @@
-<html>
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping Tausho</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+
+<body>
+    <div class="header">
+        お買い物リスト
+    </div>
+
+    <div class="body">
+        <table>
+            <tr>
+                <th>商品名</th>
+                <th>税抜価格</th>
+                <th>税率</th>
+                <th>税込価格</th>
+            </tr>
+            <tr>
+                <td><input type="text"></td>
+                <td>
+                    <form id="Calcurate" oninput="result.value = Number(price.value)">
+                        <input type="number" name="price" min="1">円
+                    </form>
+                </td>
+                <td>
+                    <input type="radio" name="tax-form1"> 8%
+                    <input type="radio" name="tax-form1"> 10%
+                </td>
+                <td>
+                    <output name="calcResult" form="Calcurate">0</output>円
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="footer">
+        合計
+    </div>
+</body>
 
 </html>
