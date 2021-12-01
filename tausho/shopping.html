@@ -29,19 +29,19 @@
                     <input type="text">
                 </td>
                 <td>
-                    <input type="number" name="price" min="1">円
+                    <input type="number" value="0" id="price1" min="1" onfocus="priceCalc(this)" onkeyup="priceCalc(this)">円
                 </td>
                 <td>
-                    <input type="radio" name="tax-form1"> 8%
-                    <input type="radio" name="tax-form1"> 10%
+                    <input type="radio" id = "tax-rate1" name="tax-form1" checked="checked" onclick="priceCalc(this)"> 8%
+                    <input type="radio" name="tax-form1" onclick="priceCalc(this)"> 10%
                 </td>
                 <td>
-                    <output name="calcResult" form="Calcurate">0</output>円
+                    <span id="ans1">0</span>円
                 </td>
             </tr>
-            
+
         </table>
-        <button class = "add-row" type="button" onclick="rowadd()">追加</button>
+        <button class="add-row" type="button" onclick="rowadd()">追加</button>
     </div>
 
     <div class="footer">
@@ -49,7 +49,27 @@
     </div>
 
     <script>
-        function rowadd() {
+
+        const priceCalc = (obj) => {
+            //選択した行数を取得
+            var rows = obj.parentNode.parentNode.rowIndex
+            //その行の税抜き価格を取得
+            var price = document.getElementById(`price${rows}`).value;
+            //税率
+            var taxRate;
+            var element = document.getElementById(`tax-rate${rows}`) ;
+
+            if(element.checked){
+                taxRate = 1.08;
+
+            }else{
+                taxRate = 1.1;
+            }
+            //税込価格を計算し、出力
+            document.getElementById(`ans${rows}`).innerHTML = price * taxRate;
+        }
+
+        const rowadd = () => {
             var table = document.getElementById("table");
             // 行数を取得
             var rows = table.rows.length;
@@ -64,12 +84,12 @@
             // セルの内容入力
             cell1.innerHTML = `<button type="button" onclick="rowdel(this)">削除</button>`;
             cell2.innerHTML = `<input type="text">`;
-            cell3.innerHTML = `<input type="number" name="price" min="1">円`;
-            cell4.innerHTML = `<input type="radio" name="tax-form${rows}"> 8%<input type="radio" name="tax-form${rows}"> 10%`;
-            cell5.innerHTML = `<output name="calcResult" form="Calcurate">0</output>円`;
+            cell3.innerHTML = `<input type="number" value="0" id="price${rows}" min="1" onfocus="priceCalc(this)" onkeyup="priceCalc(this)">円`;
+            cell4.innerHTML = `<input type="radio" id = tax-rate${rows} name="tax-form${rows}" checked="checked" onclick="priceCalc(this)"> 8%<input type="radio" name="tax-form${rows}" onclick="priceCalc(this)"> 10%`;
+            cell5.innerHTML = `<span id="ans${rows}">0</span>円`;
 
         }
-        function rowdel(obj) {
+        const rowdel = (obj) => {
             // 削除ボタンを押下された行を取得
             tr = obj.parentNode.parentNode;
             // trのインデックスを取得して行を削除する
