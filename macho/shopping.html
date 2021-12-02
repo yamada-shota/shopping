@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="stylesheet.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="responsive.css">
+  <script type="text/javascript" src="macho/shopping.js"></script>
 </head>
 
 <body>
@@ -24,7 +25,7 @@
           <li>税込価格</li>
         </ul>
       </div>
-      <div class="form">
+      <div class="form" id="form"> 
         <ul>
           <li><input type="text"></li>
           <li>
@@ -39,7 +40,7 @@
           </li>
         </ul>
       </div>
-      <input type="submit" value="+" class="btn pls">
+      <input type="submit" value="+" class="btn pls" id="btnPls" onclick="addLine()">
     </div>
   </main>
   <footer>
@@ -47,6 +48,23 @@
       <li>合計</li>
     </ul>
   </footer>
+
+  <script>
+    const addLine = () => {
+      // 複製するHTML要素を取得
+      var form = document.getElementById("form");
+
+      // 複製
+      var clone_form = form.cloneNode(true);
+
+      // 複製した要素の属性を編集
+      clone_form.id = "form2";
+
+      // 複製したHTML要素をページに挿入
+      form.after(clone_form);
+    }
+  </script>
+
 </body>
 
 </html>
