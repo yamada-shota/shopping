@@ -37,13 +37,16 @@ li {
 }
 .title li{
     width: 25%;
-    font-size: 18px;
+    font-size: 20px;
 }
 .form ul{
     border-bottom: 1px solid #888888;
 }
 .form li{
     width: 25%;
+}
+.form span {
+    font-size: 20px;
 }
 input[type="text"]{
     font-size: 20px;
@@ -59,7 +62,7 @@ input[type="text"]{
     border-radius: 100%;
 }
 input {
-    font-size: 18px;
+    font-size: 20px;
 }
 footer {
     height: 65px;
@@ -71,6 +74,6 @@ footer ul {
 }
 
 footer li {
-    font-size: 20px;
+    font-size: 23px;
     width: 25%;
 }

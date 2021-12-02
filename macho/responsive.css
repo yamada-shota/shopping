@@ -1,29 +1,72 @@
-/* タブレット */
-@media (max-width: 1000px){
+    /* タブレット */
 
+@media (max-width: 1000px) {
+    * {
+        box-sizing: border-box;
+    }
+    header h1 {
+        font-size: 28px;
+    }
+    .container {
+        width: 100%;
+    }
+    .title li {
+        font-size: 18px;
+    }
+    input {
+        font-size: 18px;
+    }
+    input[type="text"] {
+        width: 70%;
+    }
+    input[type="radio"] {
+        width: 10%;
+    }
+    .form span {
+        font-size: 18px;
+    }
+    .pls {
+        width: 35px;
+        height: 35px;
+        font-size: 25px;
+    }
+    footer li {
+        font-size: 22px;
+    }
 }
-
 /* スマホ */
-@media (max-width: 670px) {
 
-* {
-    box-sizing: border-box;
-}
-header h1 {
-    font-size: 25px;
-}
-.container {
-    width: 100%;
-}
-.title li {
-    font-size: 16px;
-}
-input[type="text"] {
-    width: 70%;
-}
-input[type="radio"] {
-    width: 10%;
-}
-footer li {
-    font-size: 18px;
+@media (max-width: 670px) {
+    * {
+        box-sizing: border-box;
+    }
+    header h1 {
+        font-size: 25px;
+    }
+    .container {
+        width: 100%;
+    }
+    .title li {
+        font-size: 15px;
+    }
+    input {
+        font-size: 15px;
+    }
+    input[type="text"] {
+        width: 70%;
+    }
+    input[type="radio"] {
+        width: 10%;
+    }
+    .form span {
+        font-size: 15px;
+    }
+    .pls {
+        width: 30px;
+        height: 30px;
+        font-size: 20px;
+    }
+    footer li {
+        font-size: 19px;
+    }
 }
