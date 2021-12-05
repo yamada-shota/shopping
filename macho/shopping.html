@@ -1,94 +1,70 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="utf-8">
   <title>Shopping</title>
   <link rel="stylesheet" href="stylesheet.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="responsive.css">
+  <script type="text/javascript" src="macho/shopping.js"></script>
 </head>
 
 <body>
-    <!-- 買い物リスト ヘッダー -->
   <header>
-    <div class="header-container">
-      <p class="edit">編集</p>
-      <p class="title">買い物リスト</p>
-    </div>
+    <h1>買い物リスト</h1>
   </header>
 
-  <!-- 買い物リスト メモ部分 -->
   <main>
-    <div class="main-container">
-      <!-- 商品・値段・消費税 -->
-      <div class="list">
-        <div class="item">
-          <input type="text" class="item-form"/>
-        </div>
-      <div class="price">
-          <input type="text" class="price-form"/>
-          <p>円</p>
-        </div>
-        <div class="tax">
-          <input type="radio" name="tax-form1" value="8%"/> 8%
-          <input type="radio" name="tax-form1" value="10%"/> 10%
-        </div>
+    <div class="container">
+      <div class="title">
+        <ul>
+          <li>商品名</li>
+          <li>税抜価格</li>
+          <li>税率</li>
+          <li>税込価格</li>
+        </ul>
       </div>
-      <!-- 商品・値段・消費税 -->
-      <div class="list">
-        <div class="item">
-          <input type="text" class="item-form"/>
-        </div>
-      <div class="price">
-          <input type="text" class="price-form"/>
-          <p>円</p>
-        </div>
-        <div class="tax">
-          <input type="radio" name="tax-form1" value="8%"/> 8%
-          <input type="radio" name="tax-form1" value="10%"/> 10%
-        </div>
+      <div class="form" id="form">
+        <ul>
+          <li><input type="text"></li>
+          <li>
+            <input type="text"><span>円</span>
+          </li>
+          <li>
+            <input type="radio" name="tax"><span>8%</span>
+            <input type="radio" name="tax"><span>10%</span>
+          </li>
+          <li>
+            <input type="text"><span>円</span>
+          </li>
+        </ul>
       </div>
-      <!-- 商品・値段・消費税 -->
-      <div class="list">
-        <div class="item">
-          <input type="text" class="item-form"/>
-        </div>
-      <div class="price">
-          <input type="text" class="price-form"/>
-          <p>円</p>
-        </div>
-        <div class="tax">
-          <input type="radio" name="tax-form1" value="8%"/> 8%
-          <input type="radio" name="tax-form1" value="10%"/> 10%
-        </div>
-      </div>
-      <!-- 商品・値段・消費税 -->
-       <div class="list">
-        <div class="item">
-          <input type="text" class="item-form"/>
-        </div>
-      <div class="price">
-          <input type="text" class="price-form"/>
-          <p>円</p>
-        </div>
-        <div class="tax">
-          <input type="radio" name="tax-form1" value="8%"/> 8%
-          <input type="radio" name="tax-form1" value="10%"/> 10%
-        </div>
-      </div>
+      <input type="submit" value="+" class="btn pls" id="btnPls" onclick="addLine()">
     </div>
   </main>
-
-  <!-- 買い物リスト フッター -->
   <footer>
-    <div class="footer-container">
-      <!-- 合計 -->
-        <p class="sum">合計</p>
-      <!-- 合計金額 計算結果表示 -->
-      <div class="sum-result">
-        <input type="text" class="result">
-        <p>円</p>
-      </div>
-    </div>
+    <ul>
+      <li>合計</li>
+    </ul>
   </footer>
+
+  <script>
+    const addLine = () => {
+      // 複製するHTML要素を取得
+      var form = document.getElementById("form");
+
+      // 複製
+      var clone_form = form.cloneNode(true);
+
+      // 複製した要素の属性を編集
+      clone_form.id = "form2";
+
+      // 複製したHTML要素をページに挿入
+      form.after(clone_form);
+    }
+  </script>
+
 </body>
 
 </html>
