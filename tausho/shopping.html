@@ -58,12 +58,14 @@
             let trTags = document.getElementsByTagName("tr");
             let trTag = trTags[trTags.length - 1];
 
-            // 複製
+            // 複製し、値を初期化
             let clone_element = trTag.cloneNode(true);
             clone_element.getElementsByClassName("item")[0].value = "";
             clone_element.getElementsByClassName("price")[0].value = "0";
+            clone_element.getElementsByClassName("taxRate")[0].checked = "checked";
             clone_element.getElementsByClassName("taxRate")[0].name = `taxRate${addRowCount}`;
             clone_element.getElementsByClassName("taxRate")[1].name = `taxRate${addRowCount}`;
+            clone_element.getElementsByClassName("priceIncludingTax")[0].innerHTML = "0";
 
             // 複製したHTML要素をページに挿入
             trTag.after(clone_element);
@@ -114,7 +116,6 @@
             //合計値を再計算
             sumCalc();
         }
-
     </script>
 </body>
 
