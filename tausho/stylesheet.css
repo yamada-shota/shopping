@@ -1,20 +1,41 @@
 body {
     font-family: "sans-serif";
-}
-
-header {
-    background-color: #ADD;
-}
-
-table {
     text-align: center;
 }
 
+header {
+    background-color: rgb(32, 141, 184);
+    color:rgb(255,255,255);
+}
+
+.picture {
+    width: 10%;
+}
+
+table {
+    margin: auto;
+}
 
 th {
-    padding: 0px 20px 0px 0px;
+    padding: 0px 10px;
 }
 
 td {
-    padding: 0px 20px 0px 0px;
+    padding: 0px 10px;
 }
+
+.button {
+    width: 100px;
+    height: 20px;
+    box-shadow: 0 0 8px gray;
+    background-color: rgb(32, 141, 184);;
+    line-height:20px;
+    color:rgb(255,255,255);
+    cursor:hand;
+    cursor:pointer;
+    margin:auto;
+}
+
+.button:hover {
+    background-color: rgb(123, 196, 224);;
+    }

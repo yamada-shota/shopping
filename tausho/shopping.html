@@ -9,43 +9,42 @@
 
 <body>
     <header>
-        お買い物リスト
+        お買い物計算メモ
     </header>
-
-    <div class="content">
-        <table id="table">
-            <tr>
-                <th></th>
-                <th>商品名</th>
-                <th>税抜価格</th>
-                <th>税率</th>
-                <th>税込価格</th>
-            </tr>
-            <tr>
-                <td>
-                    <button type="button" onclick="rowdel(this)">削除</button>
-                </td>
-                <td>
-                    <input type="text">
-                </td>
-                <td>
-                    <input type="number" value="0" min="0" id="price-0" class="price"
-                        onkeyup="priceCalc(this.id);sumCalc()">円
-                </td>
-                <td>
-                    <input type="radio" id="tax-rate1-0" name="tax-form-0" checked="checked"
-                        onclick="priceCalc(this.id);sumCalc()"> 8%
-                    <input type="radio" id="tax-rate2-0" name="tax-form-0" onclick="priceCalc(this.id);sumCalc()"> 10%
-                </td>
-                <td>
-                    <span id="ans-0" class="priceIncludingTax">0</span>円
-                </td>
-            </tr>
-        </table>
-        <button class="add-row" type="button" onclick="rowadd()">追加</button>
-        <p>
-            合計(税抜):<span id="sumNotIncludingTax">0</span>円、合計(税込):<span id="sumIncludingTax">0</span>円
-        </p>
+    <table id="table">
+        <tr>
+            <th></th>
+            <th>商品名</th>
+            <th>税抜価格</th>
+            <th>税率</th>
+            <th>税込価格</th>
+        </tr>
+        <tr>
+            <td>
+                <button type="button" onclick="rowdel(this)">削除</button>
+            </td>
+            <td>
+                <input type="text">
+            </td>
+            <td>
+                <input type="number" value="0" min="0" id="price-0" class="price"
+                    onkeyup="priceCalc(this.id);sumCalc()">円
+            </td>
+            <td>
+                <input type="radio" id="tax-rate1-0" name="tax-form-0" checked="checked"
+                    onclick="priceCalc(this.id);sumCalc()"> 8%
+                <input type="radio" id="tax-rate2-0" name="tax-form-0" onclick="priceCalc(this.id);sumCalc()"> 10%
+            </td>
+            <td>
+                <span id="ans-0" class="priceIncludingTax">0</span>円
+            </td>
+        </tr>
+    </table>
+    <div class="button" onclick="rowadd()">商品を追加</div>
+    <hr>
+    <p>
+        合計(税抜):<span id="sumNotIncludingTax">0</span>円、合計(税込):<span id="sumIncludingTax">0</span>円
+    </p>
     </div>
 
     <script>
@@ -118,7 +117,7 @@
                     sumNotIncludingTax += parseInt(prices[i].value);
                 }
                 sumIncludingTax += parseFloat(pricesIncludingTax[i].innerHTML);
-                sumIncludingTax = Math.round(sumIncludingTax*100)/100;
+                sumIncludingTax = Math.round(sumIncludingTax * 100) / 100;
             }
             //出力
             document.getElementById(`sumNotIncludingTax`).innerHTML = sumNotIncludingTax;
