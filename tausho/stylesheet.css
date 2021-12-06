@@ -1,15 +1,14 @@
 body {
-    font-family: "sans-serif";
+    font-family:"ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro";
     text-align: center;
+    margin:0px;
 }
 
 header {
     background-color: rgb(32, 141, 184);
+    height:50px;
     color:rgb(255,255,255);
-}
-
-.picture {
-    width: 10%;
+    font-size:34px;
 }
 
 table {
@@ -39,3 +38,7 @@ td {
 .button:hover {
     background-color: rgb(123, 196, 224);;
     }
+
+footer p{
+    margin:0px;
+}

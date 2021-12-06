@@ -3,14 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Shopping Tausho</title>
+    <title>WEBお買い物計算メモ</title>
     <link rel="stylesheet" href="stylesheet.css">
 </head>
 
 <body>
     <header>
-        お買い物計算メモ
+        WEBお買い物計算メモ
     </header>
+
     <table id="table">
         <tr>
             <th></th>
@@ -30,7 +31,8 @@
                 <input type="number" class="price" value="0" min="0" onkeyup="priceCalc(this);sumCalc()">円
             </td>
             <td>
-                <input type="radio" class="taxRate" name="taxRate0" checked="checked" onclick="priceCalc(this);sumCalc()"> 8%
+                <input type="radio" class="taxRate" name="taxRate0" checked="checked"
+                    onclick="priceCalc(this);sumCalc()"> 8%
                 <input type="radio" class="taxRate" name="taxRate0" onclick="priceCalc(this);sumCalc()"> 10%
             </td>
             <td>
@@ -40,9 +42,11 @@
     </table>
     <div class="button" onclick="rowadd()">商品を追加</div>
     <hr>
-    <p>
-        合計(税抜):<span id="sumNotIncludingTax">0</span>円、合計(税込):<span id="sumIncludingTax">0</span>円
-    </p>
+    <footer>
+        <p>合計</p>
+        <p>税抜：<span id="sumNotIncludingTax">0</span>円</p>
+        <p>税込：<span id="sumIncludingTax">0</span>円</p>
+    </footer>
     </div>
 
     <script>
@@ -80,7 +84,7 @@
             var price = node.getElementsByClassName("price")[0].value;
             var taxRates = node.getElementsByClassName("taxRate");
             //税率
-            var taxRate =Number(taxRates[0].checked)*1.08 + Number(taxRates[1].checked)*1.1;
+            var taxRate = Number(taxRates[0].checked) * 1.08 + Number(taxRates[1].checked) * 1.1;
             //誤差を考慮して税込価格を計算し、出力
             node.getElementsByClassName("priceIncludingTax")[0].innerHTML = Math.round((price * taxRate * 100)) / 100;
         }
