@@ -12,41 +12,44 @@
         WEBお買い物計算メモ
     </header>
 
-    <table id="table">
-        <tr>
-            <th></th>
-            <th>商品名</th>
-            <th>税抜価格</th>
-            <th>税率</th>
-            <th>税込価格</th>
-        </tr>
-        <tr>
-            <td>
-                <button type="button" onclick="rowdel(this)">削除</button>
-            </td>
-            <td>
-                <input type="text" class="item">
-            </td>
-            <td>
-                <input type="number" class="price" value="0" min="0" onkeyup="priceCalc(this);sumCalc()">円
-            </td>
-            <td>
-                <input type="radio" class="taxRate" name="taxRate0" checked="checked"
-                    onclick="priceCalc(this);sumCalc()"> 8%
-                <input type="radio" class="taxRate" name="taxRate0" onclick="priceCalc(this);sumCalc()"> 10%
-            </td>
-            <td>
-                <span class="priceIncludingTax">0</span>円
-            </td>
-        </tr>
-    </table>
-    <div class="button" onclick="rowadd()">商品を追加</div>
-    <hr>
-    <footer>
-        <p>合計</p>
-        <p>税抜：<span id="sumNotIncludingTax">0</span>円</p>
-        <p>税込：<span id="sumIncludingTax">0</span>円</p>
-    </footer>
+    <div class="container">
+        <div class="main">
+            <table id="table">
+                <tr>
+                    <th></th>
+                    <th>商品名</th>
+                    <th>税抜価格</th>
+                    <th>税率</th>
+                    <th>税込価格</th>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" onclick="rowdel(this)">削除</button>
+                    </td>
+                    <td>
+                        <input type="text" class="item">
+                    </td>
+                    <td>
+                        <input type="number" class="price" value="0" min="0" onkeyup="priceCalc(this);sumCalc()">円
+                    </td>
+                    <td>
+                        <input type="radio" class="taxRate" name="taxRate0" checked="checked"
+                            onclick="priceCalc(this);sumCalc()"> 8%
+                        <input type="radio" class="taxRate" name="taxRate0" onclick="priceCalc(this);sumCalc()"> 10%
+                    </td>
+                    <td>
+                        <span class="priceIncludingTax">0</span>円
+                    </td>
+                </tr>
+            </table>
+            <div class="button" onclick="rowadd()">商品を追加</div>
+        </div>
+        <div class="displayResult">
+            <p>合計</p>
+            <p>税抜：<span id="sumNotIncludingTax">0</span>円</p>
+            <p>税込：<span id="sumIncludingTax">0</span>円</p>
+
+        </div>
     </div>
 
     <script>
@@ -113,12 +116,16 @@
         }
 
         const rowdel = (obj) => {
-            // 削除ボタンを押下された行を取得
-            tr = obj.parentNode.parentNode;
-            // trのインデックスを取得して行を削除する
-            tr.parentNode.deleteRow(tr.sectionRowIndex);
-            //合計値を再計算
-            sumCalc();
+            if (table.rows.length > 2) {
+                // 削除ボタンを押下された行を取得
+                tr = obj.parentNode.parentNode;
+                // trのインデックスを取得して行を削除する
+                tr.parentNode.deleteRow(tr.sectionRowIndex);
+                //合計値を再計算
+                sumCalc();
+            }else{
+                alert("全ての行を削除することはできません。")
+            }
         }
     </script>
 </body>
