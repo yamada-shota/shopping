@@ -3,109 +3,99 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Shopping Tausho</title>
+    <title>WEBお買い物計算メモ</title>
     <link rel="stylesheet" href="stylesheet.css">
 </head>
 
 <body>
     <header>
-        お買い物計算メモ
+        WEBお買い物計算メモ
     </header>
-    <table id="table">
-        <tr>
-            <th></th>
-            <th>商品名</th>
-            <th>税抜価格</th>
-            <th>税率</th>
-            <th>税込価格</th>
-        </tr>
-        <tr>
-            <td>
-                <button type="button" onclick="rowdel(this)">削除</button>
-            </td>
-            <td>
-                <input type="text">
-            </td>
-            <td>
-                <input type="number" value="0" min="0" id="price-0" class="price"
-                    onkeyup="priceCalc(this.id);sumCalc()">円
-            </td>
-            <td>
-                <input type="radio" id="tax-rate1-0" name="tax-form-0" checked="checked"
-                    onclick="priceCalc(this.id);sumCalc()"> 8%
-                <input type="radio" id="tax-rate2-0" name="tax-form-0" onclick="priceCalc(this.id);sumCalc()"> 10%
-            </td>
-            <td>
-                <span id="ans-0" class="priceIncludingTax">0</span>円
-            </td>
-        </tr>
-    </table>
-    <div class="button" onclick="rowadd()">商品を追加</div>
-    <hr>
-    <p>
-        合計(税抜):<span id="sumNotIncludingTax">0</span>円、合計(税込):<span id="sumIncludingTax">0</span>円
-    </p>
+
+    <div class="container">
+        <div class="main">
+            <table id="table">
+                <tr>
+                    <th></th>
+                    <th>商品名</th>
+                    <th>税抜価格</th>
+                    <th>税率</th>
+                    <th>税込価格</th>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" onclick="rowdel(this)">削除</button>
+                    </td>
+                    <td>
+                        <input type="text" class="item">
+                    </td>
+                    <td>
+                        <input type="number" class="price" value="0" min="0" onkeyup="priceCalc(this);sumCalc()">円
+                    </td>
+                    <td>
+                        <input type="radio" class="taxRate" name="taxRate0" checked="checked"
+                            onclick="priceCalc(this);sumCalc()"> 8%
+                        <input type="radio" class="taxRate" name="taxRate0" onclick="priceCalc(this);sumCalc()"> 10%
+                    </td>
+                    <td>
+                        <span class="priceIncludingTax">0</span>円
+                    </td>
+                </tr>
+            </table>
+            <div class="button" onclick="rowadd()">商品を追加</div>
+        </div>
+        <div class="displayResult">
+            <p>合計</p>
+            <p>税抜：<span id="sumNotIncludingTax">0</span>円</p>
+            <p>税込：<span id="sumIncludingTax">0</span>円</p>
+
+        </div>
     </div>
 
     <script>
         //追加ボタンを押された回数を保存
         var addRowCount = 0;
 
+        //追加ボタンが押された時の処理ï
         const rowadd = () => {
-            //追加ボタンを押された回数をインクリメント
+            //商品追加ボタンを押した回数を1増やす
             addRowCount++;
-            //テーブルを取得
-            var table = document.getElementById("table");
-            // 行を行末に追加
-            var row = table.insertRow(-1);
-            //td分追加
-            var cell1 = row.insertCell(-1);
-            var cell2 = row.insertCell(-1);
-            var cell3 = row.insertCell(-1);
-            var cell4 = row.insertCell(-1);
-            var cell5 = row.insertCell(-1);
-            // セルの内容入力
-            cell1.innerHTML = `<button type="button" onclick="rowdel(this)">削除</button>`;
-            cell2.innerHTML = `<input type="text">`;
-            cell3.innerHTML = `<input type="number" value="0" min="0" id="price-${addRowCount}" class="price" onkeyup="priceCalc(this.id);sumCalc()">円`;
-            cell4.innerHTML = `<input type="radio" id="tax-rate1-${addRowCount}" name="tax-form-${addRowCount}" checked="checked" onclick="priceCalc(this.id);sumCalc()"> 8%<input type="radio" id="tax-rate2-${addRowCount}" name="tax-form-${addRowCount}" onclick="priceCalc(this.id);sumCalc()"> 10%`;
-            cell5.innerHTML = `<span id="ans-${addRowCount}" class="priceIncludingTax">0</span>円`;
 
+            // 複製するHTML要素を取得
+            let trTags = document.getElementsByTagName("tr");
+            let trTag = trTags[trTags.length - 1];
+
+            // 複製し、値を初期化
+            let clone_element = trTag.cloneNode(true);
+            clone_element.getElementsByClassName("item")[0].value = "";
+            clone_element.getElementsByClassName("price")[0].value = "0";
+            clone_element.getElementsByClassName("taxRate")[0].checked = "checked";
+            clone_element.getElementsByClassName("taxRate")[0].name = `taxRate${addRowCount}`;
+            clone_element.getElementsByClassName("taxRate")[1].name = `taxRate${addRowCount}`;
+            clone_element.getElementsByClassName("priceIncludingTax")[0].innerHTML = "0";
+
+            // 複製したHTML要素をページに挿入
+            trTag.after(clone_element);
         }
 
-        const rowdel = (obj) => {
-            // 削除ボタンを押下された行を取得
-            tr = obj.parentNode.parentNode;
-            // trのインデックスを取得して行を削除する
-            tr.parentNode.deleteRow(tr.sectionRowIndex);
-            //合計値を再計算
-            sumCalc();
-        }
+        const priceCalc = (obj) => {
+            // 選択された行のインデックスを取得
+            let tr = obj.parentNode.parentNode.sectionRowIndex;
+            let node = document.getElementsByTagName("tr")[tr];
 
-        const priceCalc = (id) => {
-            //idの数字を取得
-            id = id.substring(id.lastIndexOf('-') + 1);
             //税抜き価格を取得
-            var price = document.getElementById(`price-${id}`).value;
+            var price = node.getElementsByClassName("price")[0].value;
+            var taxRates = node.getElementsByClassName("taxRate");
             //税率
-            var taxRate;
-            var element = document.getElementById(`tax-rate1-${id}`);
-
-            //税込価格を計算
-            if (element.checked) {
-                taxRate = 1.08;
-
-            } else {
-                taxRate = 1.1;
-            }
+            var taxRate = Number(taxRates[0].checked) * 1.08 + Number(taxRates[1].checked) * 1.1;
             //誤差を考慮して税込価格を計算し、出力
-            document.getElementById(`ans-${id}`).innerHTML = Math.round((price * taxRate * 100)) / 100;
+            node.getElementsByClassName("priceIncludingTax")[0].innerHTML = Math.round((price * taxRate * 100)) / 100;
         }
-
 
         const sumCalc = () => {
             //クラスがpriceのものを全て取得
             var prices = document.getElementsByClassName('price');
+
             //クラスがpriceIncludingTaxのものを全て取得
             var pricesIncludingTax = document.getElementsByClassName('priceIncludingTax');
 
@@ -115,13 +105,27 @@
             for (var i = 0; i < prices.length; i++) {
                 if (!prices[i].value == "") {
                     sumNotIncludingTax += parseInt(prices[i].value);
+                    sumIncludingTax += parseFloat(pricesIncludingTax[i].innerHTML);
                 }
-                sumIncludingTax += parseFloat(pricesIncludingTax[i].innerHTML);
-                sumIncludingTax = Math.round(sumIncludingTax * 100) / 100;
             }
+            //誤差を調整
+            sumIncludingTax = Math.round(sumIncludingTax * 100) / 100;
             //出力
             document.getElementById(`sumNotIncludingTax`).innerHTML = sumNotIncludingTax;
             document.getElementById(`sumIncludingTax`).innerHTML = sumIncludingTax;
+        }
+
+        const rowdel = (obj) => {
+            if (table.rows.length > 2) {
+                // 削除ボタンを押下された行を取得
+                tr = obj.parentNode.parentNode;
+                // trのインデックスを取得して行を削除する
+                tr.parentNode.deleteRow(tr.sectionRowIndex);
+                //合計値を再計算
+                sumCalc();
+            }else{
+                alert("全ての行を削除することはできません。")
+            }
         }
     </script>
 </body>
