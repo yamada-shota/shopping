@@ -25,18 +25,18 @@
           <li>税込価格</li>
         </ul>
       </div>
-      <div class="form" id="form"> 
+      <div class="form">
         <ul>
-          <li><input type="text"></li>
+          <li><input type="text" class="item"></li>
           <li>
-            <input type="text"><span>円</span>
+            <input type="text" class="price"><span>円</span>
           </li>
           <li>
-            <input type="radio" name="tax"><span>8%</span>
-            <input type="radio" name="tax"><span>10%</span>
+            <input type="radio" class="tax" name="tax0" checked="checked"><span>8%</span>
+            <input type="radio" class="tax" name="tax0"><span>10%</span>
           </li>
           <li>
-            <input type="text"><span>円</span>
+            <input type="text" class="priceIncludingTax"><span>円</span>
           </li>
         </ul>
       </div>
@@ -50,15 +50,28 @@
   </footer>
 
   <script>
+
+    let count = 0;
+
     const addLine = () => {
+
+      count = count + 1;
+
       // 複製するHTML要素を取得
-      var form = document.getElementById("form");
+      //const form = document.getElementById("form");
+      const forms = document.getElementsByClassName("form");
+      const form = forms[forms.length - 1];
 
       // 複製
-      var clone_form = form.cloneNode(true);
+      let clone_form = form.cloneNode(true);
 
       // 複製した要素の属性を編集
-      clone_form.id = "form2";
+      clone_form.getElementsByClassName("item")[0].value = '';
+      clone_form.getElementsByClassName("price")[0].value = '';
+      clone_form.getElementsByClassName("tax")[0].checked = "checked";
+      clone_form.getElementsByClassName("tax")[0].name = `tax${count}`;
+      clone_form.getElementsByClassName("tax")[1].name = `tax${count}`;
+      clone_form.getElementsByClassName("priceIncludingTax")[0].value = '';
 
       // 複製したHTML要素をページに挿入
       form.after(clone_form);

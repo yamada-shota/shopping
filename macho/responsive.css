@@ -34,9 +34,8 @@
         font-size: 22px;
     }
 }
-/* スマホ */
-
-@media (max-width: 670px) {
+/* iPad */
+@media (max-width: 768px) {
     * {
         box-sizing: border-box;
     }
@@ -60,6 +59,42 @@
     }
     .form span {
         font-size: 15px;
+    }
+    .pls {
+        width: 30px;
+        height: 30px;
+        font-size: 20px;
+    }
+    footer li {
+        font-size: 19px;
+    }
+}
+
+/* iPhoneX */
+@media (max-width: 375px) {
+    * {
+        box-sizing: border-box;
+    }
+    header h1 {
+        font-size: 25px;
+    }
+    .container {
+        width: 100%;
+    }
+    .title li {
+        font-size: 15px;
+    }
+    input {
+        font-size: 15px;
+    }
+    input[type="text"] {
+        width: 70%;
+    }
+    input[type="radio"] {
+        width: 10%;
+    }
+    .form span {
+        font-size: 10px;
     }
     .pls {
         width: 30px;
