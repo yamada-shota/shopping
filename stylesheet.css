@@ -1,79 +1,47 @@
-* {
-    box-sizing: border-box;
-}
 body {
-    font-family: "ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";
+    font-family: "ヒラギノ丸ゴ Pro W4", "ヒラギノ丸ゴ Pro", "Hiragino Maru Gothic Pro";
+    text-align: center;
+    background-color: rgb(60, 159, 199);
+    margin: 0px;
 }
+
 header {
-    height: 65px;
-    background-color: #e1eec1;
-    color: black;
+    height: 50px;
+    color: rgb(255, 255, 255);
+    font-size: 34px;
 }
-header h1 {
-    font-size: 30px;
-    text-align: center;
-    line-height: 65px;
-}
+
 .container {
-    max-width: 1170px;
-    width: 100%;
-    padding: 0 20px;
-
-}
-.container span{
-    padding-left: 5px;
-}
-ul {
-    padding: 15px;
-    text-align: center;
     display: flex;
-}
-li {
-    list-style: none;
-
-}
-.title ul{
-    border-bottom: 1px solid #888888;
-}
-.title li{
-    width: 25%;
-    font-size: 20px;
-}
-.form ul{
-    border-bottom: 1px solid #888888;
-}
-.form li{
-    width: 25%;
-}
-.form span {
-    font-size: 20px;
-}
-input[type="text"]{
-    font-size: 20px;
-}
-.pls {
-    width: 40px;
-    height: 40px;
-    font-size: 30px;
-    margin: 10px;
-    color: #888888;
-    background: #d3d3d3;
-    border: #d3d3d3;
-    border-radius: 100%;
-}
-input {
-    font-size: 20px;
-}
-footer {
-    height: 65px;
-    background-color: #e1eec1;
-    color: black;
-}
-footer ul {
-    
+    flex-wrap: wrap;
+    justify-content: center;
+    padding :0px 50px;
+    background-color: rgb(227, 247, 255);
 }
 
-footer li {
-    font-size: 23px;
-    width: 25%;
+.main,.displayResult {
+    padding: 0px 30px;
+    background-color :rgb(255, 255, 255);
+}
+
+th,td {
+    padding: 0px 10px;
+}
+
+.button {
+    width: 100px;
+    height: 20px;
+    box-shadow: 0 0 8px gray;
+    background-color: rgb(60, 159, 199);
+    line-height: 20px;
+    color: rgb(255, 255, 255);
+    cursor: hand;
+    cursor: pointer;
+    margin: 5px auto;
+    padding: 3px;
+}
+
+.button:hover {
+    background-color: rgb(123, 196, 224);
+    ;
 }
