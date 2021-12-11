@@ -29,12 +29,19 @@
                         <input type="text" class="item">
                     </td>
                     <td>
-                        <input type="number" class="price" value="0" min="0" onkeyup="priceCalc(this);sumCalc()">円
+                        <input type="number" class="price" min="0" size="10" onkeyup="priceCalc(this);sumCalc()">円
                     </td>
                     <td>
-                        <input type="radio" class="taxRate" name="taxRate0" checked="checked"
-                            onclick="priceCalc(this);sumCalc()"> 8%
-                        <input type="radio" class="taxRate" name="taxRate0" onclick="priceCalc(this);sumCalc()"> 10%
+                        <ul>
+                            <li>
+                                <input type="radio" class="taxRate" name="taxRate0" checked="checked"
+                                    onclick="priceCalc(this);sumCalc()"> 8%
+                            </li>
+                            <li>
+                                <input type="radio" class="taxRate" name="taxRate0" onclick="priceCalc(this);sumCalc()">
+                                10%
+                            </li>
+                        </ul>
                     </td>
                     <td>
                         <span class="priceIncludingTax">0</span>円
@@ -67,7 +74,7 @@
             // 複製し、値を初期化
             let clone_element = trTag.cloneNode(true);
             clone_element.getElementsByClassName("item")[0].value = "";
-            clone_element.getElementsByClassName("price")[0].value = "0";
+            clone_element.getElementsByClassName("price")[0].value = "";
             clone_element.getElementsByClassName("taxRate")[0].checked = "checked";
             clone_element.getElementsByClassName("taxRate")[0].name = `taxRate${addRowCount}`;
             clone_element.getElementsByClassName("taxRate")[1].name = `taxRate${addRowCount}`;
@@ -122,7 +129,7 @@
                 tr.parentNode.deleteRow(tr.sectionRowIndex);
                 //合計値を再計算
                 sumCalc();
-            }else{
+            } else {
                 alert("全ての行を削除することはできません。")
             }
         }
