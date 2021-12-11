@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>WEBお買い物計算メモ</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+
+<body>
+    <header>
+        WEBお買い物計算メモ
+    </header>
+    <div class="container">
+        <div class="main">
+            <table id="table">
+                <tr>
+                    <th></th>
+                    <th>商品名</th>
+                    <th>税抜価格</th>
+                    <th>税率</th>
+                    <th>税込価格</th>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" onclick="rowdel(this)">削除</button>
+                    </td>
+                    <td>
+                        <input type="text" class="item">
+                    </td>
+                    <td>
+                        <input type="number" class="price" value="0" min="0" onkeyup="priceCalc(this);sumCalc()">円
+                    </td>
+                    <td>
+                        <input type="radio" class="taxRate" name="taxRate0" checked="checked"
+                            onclick="priceCalc(this);sumCalc()"> 8%
+                        <input type="radio" class="taxRate" name="taxRate0" onclick="priceCalc(this);sumCalc()"> 10%
+                    </td>
+                    <td>
+                        <span class="priceIncludingTax">0</span>円
+                    </td>
+                </tr>
+            </table>
+            <div class="button" onclick="rowadd()">商品を追加</div>
+        </div>
+        <div class="displayResult">
+            <p>合計</p>
+            <p>税抜：<span id="sumNotIncludingTax">0</span>円</p>
+            <p>税込：<span id="sumIncludingTax">0</span>円</p>
+
+        </div>
+    </div>
+
+    <script>
+        //追加ボタンを押された回数を保存
+        var addRowCount = 0;
+
+        //追加ボタンが押された時の処理ï
+        const rowadd = () => {
+            //商品追加ボタンを押した回数を1増やす
+            addRowCount++;
+
+            // 複製するHTML要素を取得
+            let trTags = document.getElementsByTagName("tr");
+            let trTag = trTags[trTags.length - 1];
+
+            // 複製し、値を初期化
+            let clone_element = trTag.cloneNode(true);
+            clone_element.getElementsByClassName("item")[0].value = "";
+            clone_element.getElementsByClassName("price")[0].value = "0";
+            clone_element.getElementsByClassName("taxRate")[0].checked = "checked";
+            clone_element.getElementsByClassName("taxRate")[0].name = `taxRate${addRowCount}`;
+            clone_element.getElementsByClassName("taxRate")[1].name = `taxRate${addRowCount}`;
+            clone_element.getElementsByClassName("priceIncludingTax")[0].innerHTML = "0";
+
+            // 複製したHTML要素をページに挿入
+            trTag.after(clone_element);
+        }
+
+        const priceCalc = (obj) => {
+            // 選択された行のインデックスを取得
+            let tr = obj.parentNode.parentNode.sectionRowIndex;
+            let node = document.getElementsByTagName("tr")[tr];
+
+            //税抜き価格を取得
+            var price = node.getElementsByClassName("price")[0].value;
+            var taxRates = node.getElementsByClassName("taxRate");
+            //税率
+            var taxRate = Number(taxRates[0].checked) * 1.08 + Number(taxRates[1].checked) * 1.1;
+            //誤差を考慮して税込価格を計算し、出力
+            node.getElementsByClassName("priceIncludingTax")[0].innerHTML = Math.round((price * taxRate * 100)) / 100;
+        }
+
+        const sumCalc = () => {
+            //クラスがpriceのものを全て取得
+            var prices = document.getElementsByClassName('price');
+
+            //クラスがpriceIncludingTaxのものを全て取得
+            var pricesIncludingTax = document.getElementsByClassName('priceIncludingTax');
+
+            var sumNotIncludingTax = 0;
+            var sumIncludingTax = 0;
+            //合計を求めて
+            for (var i = 0; i < prices.length; i++) {
+                if (!prices[i].value == "") {
+                    sumNotIncludingTax += parseInt(prices[i].value);
+                    sumIncludingTax += parseFloat(pricesIncludingTax[i].innerHTML);
+                }
+            }
+            //誤差を調整
+            sumIncludingTax = Math.round(sumIncludingTax * 100) / 100;
+            //出力
+            document.getElementById(`sumNotIncludingTax`).innerHTML = sumNotIncludingTax;
+            document.getElementById(`sumIncludingTax`).innerHTML = sumIncludingTax;
+        }
+
+        const rowdel = (obj) => {
+            if (table.rows.length > 2) {
+                // 削除ボタンを押下された行を取得
+                tr = obj.parentNode.parentNode;
+                // trのインデックスを取得して行を削除する
+                tr.parentNode.deleteRow(tr.sectionRowIndex);
+                //合計値を再計算
+                sumCalc();
+            }else{
+                alert("全ての行を削除することはできません。")
+            }
+        }
+    </script>
+</body>
+
+</html>
