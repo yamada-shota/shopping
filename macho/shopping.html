@@ -28,10 +28,9 @@
                 </ul>
             </div>
             <div class="form" id="form0">
-                <!-- <input type="submit" value="×" class="btn dlt" id="btnDlt" onclick="deleteLine()"> -->
                 <ul>
                     <li><input type="submit" value="×" class="btn dlt" id="btnDlt" onclick="deleteLine()"></li>
-                    <li><input type="text" class="item"></li>
+                    <li><input type="text" class="item" id="itemForm0"></li>
                     <li>
                         <input type="text" class="price" id="priceForm0"><span class="en">円</span>
                     </li>
@@ -40,9 +39,9 @@
                         <input type="radio" class="tax" name="tax0"><span>10%</span>
                     </li>
                     <li>
-                        <input type="text" class="priceIncludingTax" id="priceIncludingTaxForm"><span class="en"> 円</span>
+                        <input type="text" class="priceIncludingTax" id="priceIncludingTaxForm0"><span class="en"> 円</span>
                     </li>
-                    <li><input type="number" class="quantity" id="quantityForm" value="1"></li>
+                    <li><input type="number" class="quantity" id="quantityForm0" value="1"></li>
                 </ul>
             </div>
             <div>
@@ -52,7 +51,7 @@
     </main>
     <footer>
         <h2 class="sum">合計</h2>
-        <input type="text" class="result" id="resultForm"><span class="en">円</span>
+        <input type="text" class="result" id="resultForm0"><span class="en">円</span>
     </footer>
 
     <script>
@@ -64,6 +63,7 @@
         //   formElement.remove();
         // }
 
+        //フォームを追加
         const addLine = () => {
 
             count++;
@@ -78,14 +78,21 @@
 
             // 複製した要素の属性を編集
             clone_form.getElementsByClassName("form")[0].id = `form${count}`;
+
             clone_form.getElementsByClassName("item")[0].value = '';
+            // clone_form.getElementsByClassName("item")[0].id = `itemForm${count}`;
+
             clone_form.getElementsByClassName("price")[0].value = '';
-            clone_form.getElementsByClassName("price")[0].id = `priceForm${count}`;
+            // clone_form.getElementsByClassName("price")[0].id = `priceForm${count}`;
+
             clone_form.getElementsByClassName("tax")[0].checked = "checked";
             clone_form.getElementsByClassName("tax")[0].name = `tax${count}`;
             clone_form.getElementsByClassName("tax")[1].name = `tax${count}`;
+
             clone_form.getElementsByClassName("priceIncludingTax")[0].value = '';
-            clone_form.getElementsByClassName("quantity")[0].value = '';
+            // clone_form.getElementsByClassName("priceIncludingTax")[0].id = `priceIncludingTaxForm${count}`;
+
+            // clone_form.getElementsByClassName("quantity")[0].value = 1;
 
             // 複製したHTML要素をページに挿入
             form.after(clone_form);
