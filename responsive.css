@@ -1,0 +1,77 @@
+/* iPhoneX */
+
+@media (max-width: 375px) {
+    * {
+        box-sizing: border-box;
+    }
+    header h1 {
+        font-size: 18px;
+        text-align: center;
+        line-height: 65px;
+    }
+    .title li {
+        font-size: 11px;
+        width: 20%;
+    }
+    .dlt {
+        display: inline-block;
+        width: 23px;
+        height: 23px;
+        font-size: 18px;
+        margin: 10px;
+    }
+    .form li {
+        display: inline-block;
+        width: 20%;
+    }
+    .en {
+        font-size: 5px;
+        padding-left: 2px;
+    }
+    .sp {
+        display: none;
+    }
+    input[type="text"] {
+        font-size: 10px;
+        line-height: 15px;
+    }
+    .item {
+        width: 80%;
+    }
+    .price {
+        width: 60%;
+    }
+    .taxRate span {
+        font-size: 5px;
+    }
+    .tax {
+        width: 10%;
+    }
+    .priceIncludingTax {
+        width: 60%;
+    }
+    .quantity {
+        width: 50%;
+        height: 20px;
+    }
+    .pls {
+        width: 23px;
+        height: 23px;
+        font-size: 18px;
+        margin-left: 15px;
+    }
+    footer {
+        height: 65px;
+        text-align: center;
+        background-color: #e1eec1;
+        color: black;
+    }
+    .sum {
+        display: inline-block;
+        font-size: 15px;
+        margin: 10px;
+    }
+    .result {
+        font-size: 30px;
+    }
+}
