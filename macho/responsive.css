@@ -1,72 +1,77 @@
-    /* タブレット */
+/* iPhoneX */
 
-@media (max-width: 1000px) {
+@media (max-width: 375px) {
     * {
         box-sizing: border-box;
     }
     header h1 {
-        font-size: 28px;
-    }
-    .container {
-        width: 100%;
+        font-size: 18px;
+        text-align: center;
+        line-height: 65px;
     }
     .title li {
-        font-size: 18px;
+        font-size: 11px;
+        width: 20%;
     }
-    input {
+    .dlt {
+        display: inline-block;
+        width: 23px;
+        height: 23px;
         font-size: 18px;
+        margin: 10px;
+    }
+    .form li {
+        display: inline-block;
+        width: 20%;
+    }
+    .en {
+        font-size: 5px;
+        padding-left: 2px;
+    }
+    .sp {
+        display: none;
     }
     input[type="text"] {
-        width: 70%;
+        font-size: 10px;
+        line-height: 15px;
     }
-    input[type="radio"] {
+    .item {
+        width: 80%;
+    }
+    .price {
+        width: 60%;
+    }
+    .taxRate span {
+        font-size: 5px;
+    }
+    .tax {
         width: 10%;
     }
-    .form span {
+    .priceIncludingTax {
+        width: 60%;
+    }
+    .quantity {
+        width: 50%;
+        height: 20px;
+    }
+    .pls {
+        width: 23px;
+        height: 23px;
         font-size: 18px;
+        margin-left: 15px;
     }
-    .pls {
-        width: 35px;
-        height: 35px;
-        font-size: 25px;
+    footer {
+        height: 65px;
+        text-align: center;
+        background-color: #e1eec1;
+        color: black;
     }
-    footer li {
-        font-size: 22px;
-    }
-}
-/* スマホ */
-
-@media (max-width: 670px) {
-    * {
-        box-sizing: border-box;
-    }
-    header h1 {
-        font-size: 25px;
-    }
-    .container {
-        width: 100%;
-    }
-    .title li {
+    .sum {
+        display: inline-block;
         font-size: 15px;
+        margin: 10px;
     }
-    input {
-        font-size: 15px;
-    }
-    input[type="text"] {
-        width: 70%;
-    }
-    input[type="radio"] {
-        width: 10%;
-    }
-    .form span {
-        font-size: 15px;
-    }
-    .pls {
-        width: 30px;
-        height: 30px;
-        font-size: 20px;
-    }
-    footer li {
-        font-size: 19px;
+    .result {
+        font-size: 30px;
     }
 }

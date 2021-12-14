@@ -2,68 +2,139 @@
 <html lang="ja">
 
 <head>
-  <meta charset="utf-8">
-  <title>Shopping</title>
-  <link rel="stylesheet" href="stylesheet.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="responsive.css">
-  <script type="text/javascript" src="macho/shopping.js"></script>
+    <meta charset="utf-8">
+    <title>Shopping</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="responsive.css">
+    <script type="text/javascript" src="macho/shopping.js"></script>
 </head>
 
 <body>
-  <header>
-    <h1>買い物リスト</h1>
-  </header>
+    <header>
+        <h1>買い物リスト</h1>
+    </header>
 
-  <main>
-    <div class="container">
-      <div class="title">
-        <ul>
-          <li>商品名</li>
-          <li>税抜価格</li>
-          <li>税率</li>
-          <li>税込価格</li>
-        </ul>
-      </div>
-      <div class="form" id="form">
-        <ul>
-          <li><input type="text"></li>
-          <li>
-            <input type="text"><span>円</span>
-          </li>
-          <li>
-            <input type="radio" name="tax"><span>8%</span>
-            <input type="radio" name="tax"><span>10%</span>
-          </li>
-          <li>
-            <input type="text"><span>円</span>
-          </li>
-        </ul>
-      </div>
-      <input type="submit" value="+" class="btn pls" id="btnPls" onclick="addLine()">
-    </div>
-  </main>
-  <footer>
-    <ul>
-      <li>合計</li>
-    </ul>
-  </footer>
+    <main>
+        <div class="container">
+            <div class="title">
+                <ul>
+                    <li></li>
+                    <li>商品名</li>
+                    <li>税抜価格</li>
+                    <li>税率</li>
+                    <li>税込価格</li>
+                    <li>個数</li>
+                </ul>
+            </div>
+            <div class="form" id="form0">
+                <ul>
+                    <li><input type="submit" value="×" class="btn dlt" id="btnDlt0" onclick="deleteForm(this.id); calculateSum()"></li>
+                    <li><input type="text" class="item" id="itemForm0"></li>
+                    <li>
+                        <input type="number" class="price" id="priceForm0" oninput="calculatePriceIncludingTax(this.id); calculateSum()"><span class="en">円</span>
+                    </li>
+                    <li class="taxRate">
+                        <input type="radio" class="tax" name="tax0" id="tax8-0" checked="checked" onclick="calculatePriceIncludingTax(this.id); calculateSum()"><span>&nbsp; 8%</span><br class="sp">
+                        <input type="radio" class="tax" name="tax0" id="tax10-0" onclick="calculatePriceIncludingTax(this.id); calculateSum()"><span>10%</span>
+                    </li>
+                    <li>
+                        <input type="number" class="priceIncludingTax" id="priceIncludingTaxForm0" readonly><span class="en">
+              円</span>
+                    </li>
+                    <li><input type="number" class="quantity" id="quantityForm0" value="1" oninput="calculateSum()"></li>
+                </ul>
+            </div>
+            <div>
+                <input type="submit" value="+" class="btn pls" id="btnPls" onclick="addLine()">
+            </div>
+        </div>
+    </main>
+    <footer>
+        <h2 class="sum">合計</h2>
+        <input type="text" class="result" id="resultForm" readonly><span class="en">円</span>
+    </footer>
 
-  <script>
-    const addLine = () => {
-      // 複製するHTML要素を取得
-      var form = document.getElementById("form");
+    <script>
+        let count = 0;
 
-      // 複製
-      var clone_form = form.cloneNode(true);
+        const deleteForm = (btnId) => {
+            const forms = document.getElementsByClassName("form");
+            if (forms.length > 1) {
+                //親要素の親要素の親要素を取得
+                let parent = document.getElementById(btnId).parentNode.parentNode.parentNode;
+                //フォームを一行削除
+                parent.remove();
+            } else {
+                forms[0].getElementsByClassName("item")[0].value = '';
+                forms[0].getElementsByClassName("price")[0].value = '';
+                forms[0].getElementsByClassName("tax")[0].checked = "checked";
+                forms[0].getElementsByClassName("priceIncludingTax")[0].value = '';
+                forms[0].getElementsByClassName("quantity")[0].value = 1;
+            }
 
-      // 複製した要素の属性を編集
-      clone_form.id = "form2";
+        }
 
-      // 複製したHTML要素をページに挿入
-      form.after(clone_form);
-    }
-  </script>
+        //フォームを追加
+        const addLine = () => {
+
+            count++;
+
+            // 複製するHTML要素を取得
+            const forms = document.getElementsByClassName("form");
+            const form = forms[forms.length - 1];
+
+
+            // 複製
+            let clone_form = form.cloneNode(true);
+
+            // 複製した要素の属性を編集
+            // clone_form.getElementsByClassName("form")[0].id = `form${count}`;
+            clone_form.id = `form${count}`;
+
+            clone_form.getElementsByClassName("btn")[0].id = `btnDlt${count}`;
+
+            clone_form.getElementsByClassName("item")[0].value = '';
+            clone_form.getElementsByClassName("item")[0].id = `itemForm${count}`;
+
+            clone_form.getElementsByClassName("price")[0].value = '';
+            clone_form.getElementsByClassName("price")[0].id = `priceForm${count}`;
+
+            clone_form.getElementsByClassName("tax")[0].checked = "checked";
+            clone_form.getElementsByClassName("tax")[0].id = `tax8-${count}`;
+            clone_form.getElementsByClassName("tax")[1].id = `tax10-${count}`;
+            clone_form.getElementsByClassName("tax")[0].name = `tax${count}`;
+            clone_form.getElementsByClassName("tax")[1].name = `tax${count}`;
+
+            clone_form.getElementsByClassName("priceIncludingTax")[0].value = '';
+            clone_form.getElementsByClassName("priceIncludingTax")[0].id = `priceIncludingTaxForm${count}`;
+
+            clone_form.getElementsByClassName("quantity")[0].value = 1;
+
+            // 複製したHTML要素をページに挿入
+            form.after(clone_form);
+        }
+
+        const calculatePriceIncludingTax = (id) => {
+            let parent = document.getElementById(id).parentNode.parentNode.parentNode;
+            let price = parent.getElementsByClassName("price")[0].value;
+            let radio = parent.getElementsByClassName("tax");
+            let taxRate = Number(radio[0].checked) * 1.08 + Number(radio[1].checked) * 1.1;
+            parent.getElementsByClassName("priceIncludingTax")[0].value = Math.round(price * taxRate * 100) / 100;
+        }
+        const calculateSum = () => {
+            let result = 0;
+            let priceIncludingTaxes = document.getElementsByClassName("priceIncludingTax");
+            let quantity = document.getElementsByClassName("quantity");
+            for (let i = 0; i < priceIncludingTaxes.length; i++) {
+                result = result + priceIncludingTaxes[i].value * quantity[i].value;
+            }
+            document.getElementById("resultForm").value = Math.round(result);
+
+
+
+        }
+    </script>
 
 </body>
 
