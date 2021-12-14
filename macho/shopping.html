@@ -29,19 +29,20 @@
             </div>
             <div class="form" id="form0">
                 <ul>
-                    <li><input type="submit" value="×" class="btn dlt" id="btnDlt0" onclick="deleteForm(this.id)"></li>
+                    <li><input type="submit" value="×" class="btn dlt" id="btnDlt0" onclick="deleteForm(this.id); calculateSum()"></li>
                     <li><input type="text" class="item" id="itemForm0"></li>
                     <li>
-                        <input type="text" class="price" id="priceForm0"><span class="en">円</span>
+                        <input type="number" class="price" id="priceForm0" oninput="calculatePriceIncludingTax(this.id); calculateSum()"><span class="en">円</span>
                     </li>
                     <li class="taxRate">
-                        <input type="radio" class="tax" name="tax0" checked="checked"><span>&nbsp; 8%</span><br class="sp">
-                        <input type="radio" class="tax" name="tax0"><span>10%</span>
+                        <input type="radio" class="tax" name="tax0" id="tax8-0" checked="checked" onclick="calculatePriceIncludingTax(this.id); calculateSum()"><span>&nbsp; 8%</span><br class="sp">
+                        <input type="radio" class="tax" name="tax0" id="tax10-0" onclick="calculatePriceIncludingTax(this.id); calculateSum()"><span>10%</span>
                     </li>
                     <li>
-                        <input type="text" class="priceIncludingTax" id="priceIncludingTaxForm0"><span class="en"> 円</span>
+                        <input type="number" class="priceIncludingTax" id="priceIncludingTaxForm0" readonly><span class="en">
+              円</span>
                     </li>
-                    <li><input type="number" class="quantity" id="quantityForm0" value="1"></li>
+                    <li><input type="number" class="quantity" id="quantityForm0" value="1" oninput="calculateSum()"></li>
                 </ul>
             </div>
             <div>
@@ -51,7 +52,7 @@
     </main>
     <footer>
         <h2 class="sum">合計</h2>
-        <input type="text" class="result" id="resultForm0"><span class="en">円</span>
+        <input type="text" class="result" id="resultForm" readonly><span class="en">円</span>
     </footer>
 
     <script>
@@ -100,6 +101,8 @@
             clone_form.getElementsByClassName("price")[0].id = `priceForm${count}`;
 
             clone_form.getElementsByClassName("tax")[0].checked = "checked";
+            clone_form.getElementsByClassName("tax")[0].id = `tax8-${count}`;
+            clone_form.getElementsByClassName("tax")[1].id = `tax10-${count}`;
             clone_form.getElementsByClassName("tax")[0].name = `tax${count}`;
             clone_form.getElementsByClassName("tax")[1].name = `tax${count}`;
 
@@ -112,18 +115,25 @@
             form.after(clone_form);
         }
 
-        // const calculate = () => {
-        //   // 2つの入力フォームの値を取得
-        //   var priceForm0 = document.getElementById("priceForm0").value;
-        //   var priceForm1 = document.getElementById("priceForm1").value;
+        const calculatePriceIncludingTax = (id) => {
+            let parent = document.getElementById(id).parentNode.parentNode.parentNode;
+            let price = parent.getElementsByClassName("price")[0].value;
+            let radio = parent.getElementsByClassName("tax");
+            let taxRate = Number(radio[0].checked) * 1.08 + Number(radio[1].checked) * 1.1;
+            parent.getElementsByClassName("priceIncludingTax")[0].value = Math.round(price * taxRate * 100) / 100;
+        }
+        const calculateSum = () => {
+            let result = 0;
+            let priceIncludingTaxes = document.getElementsByClassName("priceIncludingTax");
+            let quantity = document.getElementsByClassName("quantity");
+            for (let i = 0; i < priceIncludingTaxes.length; i++) {
+                result = result + priceIncludingTaxes[i].value * quantity[i].value;
+            }
+            document.getElementById("resultForm").value = Math.round(result);
 
-        //   // 2つの数値を足す
-        //   var sum = parseInt(priceForm0, 10) + parseInt(priceForm1, 10);
 
-        //   // 足し算の結果を別の入力フォームに表示
-        //   var resultForm = document.getElementById("resultForm");
-        //   resultForm.value = sum;
-        // }
+
+        }
     </script>
 
 </body>
