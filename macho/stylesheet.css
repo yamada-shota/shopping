@@ -60,10 +60,6 @@ li {
     border-radius: 100%;
 }
 
-.dlt:hover {
-    background: rgb(247, 94, 77);
-}
-
 .form {
     border-bottom: 1px solid #888888;
 }
@@ -114,10 +110,6 @@ input[type="text"] {
     margin: 10px;
     border: #d3d3d3;
     border-radius: 100%;
-}
-
-.pls:hover {
-    background: #8d8d8d;
 }
 
 footer {
