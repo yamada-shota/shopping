@@ -2,81 +2,108 @@
 <html lang="ja">
 
 <head>
-  <meta charset="utf-8">
-  <title>Shopping</title>
-  <link rel="stylesheet" href="stylesheet.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="responsive.css">
-  <script type="text/javascript" src="macho/shopping.js"></script>
+    <meta charset="utf-8">
+    <title>Shopping</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="responsive.css">
+    <script type="text/javascript" src="macho/shopping.js"></script>
 </head>
 
 <body>
-  <header>
-    <h1>買い物リスト</h1>
-  </header>
+    <header>
+        <h1>買い物リスト</h1>
+    </header>
 
-  <main>
-    <div class="container">
-      <div class="title">
-        <ul>
-          <li>商品名</li>
-          <li>税抜価格</li>
-          <li>税率</li>
-          <li>税込価格</li>
-        </ul>
-      </div>
-      <div class="form">
-        <ul>
-          <li><input type="text" class="item"></li>
-          <li>
-            <input type="text" class="price"><span>円</span>
-          </li>
-          <li>
-            <input type="radio" class="tax" name="tax0" checked="checked"><span>8%</span>
-            <input type="radio" class="tax" name="tax0"><span>10%</span>
-          </li>
-          <li>
-            <input type="text" class="priceIncludingTax"><span>円</span>
-          </li>
-        </ul>
-      </div>
-      <input type="submit" value="+" class="btn pls" id="btnPls" onclick="addLine()">
-    </div>
-  </main>
-  <footer>
-    <ul>
-      <li>合計</li>
-    </ul>
-  </footer>
+    <main>
+        <div class="container">
+            <div class="title">
+                <ul>
+                    <li></li>
+                    <li>商品名</li>
+                    <li>税抜価格</li>
+                    <li>税率</li>
+                    <li>税込価格</li>
+                    <li>個数</li>
+                </ul>
+            </div>
+            <div class="form" id="form0">
+                <!-- <input type="submit" value="×" class="btn dlt" id="btnDlt" onclick="deleteLine()"> -->
+                <ul>
+                    <li><input type="submit" value="×" class="btn dlt" id="btnDlt" onclick="deleteLine()"></li>
+                    <li><input type="text" class="item"></li>
+                    <li>
+                        <input type="text" class="price" id="priceForm0"><span class="en">円</span>
+                    </li>
+                    <li class="taxRate">
+                        <input type="radio" class="tax" name="tax0" checked="checked"><span>&nbsp; 8%</span><br class="sp">
+                        <input type="radio" class="tax" name="tax0"><span>10%</span>
+                    </li>
+                    <li>
+                        <input type="text" class="priceIncludingTax" id="priceIncludingTaxForm"><span class="en"> 円</span>
+                    </li>
+                    <li><input type="number" class="quantity" id="quantityForm" value="1"></li>
+                </ul>
+            </div>
+            <div>
+                <input type="submit" value="+" class="btn pls" id="btnPls" onclick="addLine()">
+            </div>
+        </div>
+    </main>
+    <footer>
+        <h2 class="sum">合計</h2>
+        <input type="text" class="result" id="resultForm"><span class="en">円</span>
+    </footer>
 
-  <script>
+    <script>
+        let count = 0;
 
-    let count = 0;
+        // //フォームを一行削除
+        // const deleteLine = () => {
+        //   var formElement = document.getElementById("form0");
+        //   formElement.remove();
+        // }
 
-    const addLine = () => {
+        const addLine = () => {
 
-      count = count + 1;
+            count++;
 
-      // 複製するHTML要素を取得
-      //const form = document.getElementById("form");
-      const forms = document.getElementsByClassName("form");
-      const form = forms[forms.length - 1];
+            // 複製するHTML要素を取得
+            //const form = document.getElementById("form");
+            const forms = document.getElementsByClassName("form");
+            const form = forms[forms.length - 1];
 
-      // 複製
-      let clone_form = form.cloneNode(true);
+            // 複製
+            let clone_form = form.cloneNode(true);
 
-      // 複製した要素の属性を編集
-      clone_form.getElementsByClassName("item")[0].value = '';
-      clone_form.getElementsByClassName("price")[0].value = '';
-      clone_form.getElementsByClassName("tax")[0].checked = "checked";
-      clone_form.getElementsByClassName("tax")[0].name = `tax${count}`;
-      clone_form.getElementsByClassName("tax")[1].name = `tax${count}`;
-      clone_form.getElementsByClassName("priceIncludingTax")[0].value = '';
+            // 複製した要素の属性を編集
+            clone_form.getElementsByClassName("form")[0].id = `form${count}`;
+            clone_form.getElementsByClassName("item")[0].value = '';
+            clone_form.getElementsByClassName("price")[0].value = '';
+            clone_form.getElementsByClassName("price")[0].id = `priceForm${count}`;
+            clone_form.getElementsByClassName("tax")[0].checked = "checked";
+            clone_form.getElementsByClassName("tax")[0].name = `tax${count}`;
+            clone_form.getElementsByClassName("tax")[1].name = `tax${count}`;
+            clone_form.getElementsByClassName("priceIncludingTax")[0].value = '';
+            clone_form.getElementsByClassName("quantity")[0].value = '';
 
-      // 複製したHTML要素をページに挿入
-      form.after(clone_form);
-    }
-  </script>
+            // 複製したHTML要素をページに挿入
+            form.after(clone_form);
+        }
+
+        // const calculate = () => {
+        //   // 2つの入力フォームの値を取得
+        //   var priceForm0 = document.getElementById("priceForm0").value;
+        //   var priceForm1 = document.getElementById("priceForm1").value;
+
+        //   // 2つの数値を足す
+        //   var sum = parseInt(priceForm0, 10) + parseInt(priceForm1, 10);
+
+        //   // 足し算の結果を別の入力フォームに表示
+        //   var resultForm = document.getElementById("resultForm");
+        //   resultForm.value = sum;
+        // }
+    </script>
 
 </body>
 

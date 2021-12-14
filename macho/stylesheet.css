@@ -1,79 +1,129 @@
 * {
     box-sizing: border-box;
 }
+
 body {
-    font-family: "ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";
+    font-family: "ヒラギノ丸ゴ Pro W4", "ヒラギノ丸ゴ Pro", "Hiragino Maru Gothic Pro", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "HG丸ｺﾞｼｯｸM-PRO", "HGMaruGothicMPRO";
 }
+
 header {
     height: 65px;
     background-color: #e1eec1;
     color: black;
 }
+
 header h1 {
-    font-size: 30px;
+    font-size: 33px;
     text-align: center;
     line-height: 65px;
 }
+
 .container {
     max-width: 1170px;
     width: 100%;
     padding: 0 20px;
+    margin: auto;
+}
 
-}
-.container span{
-    padding-left: 5px;
-}
 ul {
-    padding: 15px;
-    text-align: center;
     display: flex;
+    text-align: center;
 }
+
 li {
     list-style: none;
+}
 
-}
-.title ul{
+.title {
     border-bottom: 1px solid #888888;
 }
-.title li{
-    width: 25%;
-    font-size: 20px;
+
+.title ul {
+    padding: 0;
 }
-.form ul{
+
+.title li {
+    font-size: 20px;
+    width: 20%;
+}
+
+.dlt {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    font-size: 30px;
+    color: white;
+    margin: 10px;
+    transition: all 2s;
+    background: rgb(252, 145, 133);
+    border: rgb(252, 145, 133);
+    border-radius: 100%;
+}
+
+.form {
     border-bottom: 1px solid #888888;
 }
-.form li{
-    width: 25%;
+
+.form ul {
+    padding: 0;
 }
-.form span {
-    font-size: 20px;
+
+.form li {
+    display: inline-block;
+    width: 20%;
 }
-input[type="text"]{
-    font-size: 20px;
+
+.en {
+    font-size: 18px;
+    padding-left: 5px;
 }
+
+.sp {
+    display: none;
+}
+
+input[type="text"] {
+    font-size: 15px;
+    line-height: 35px;
+}
+
+.price {
+    width: 70%;
+}
+
+.priceIncludingTax {
+    width: 70%;
+}
+
+.quantity {
+    width: 30%;
+    height: 40px;
+}
+
 .pls {
     width: 40px;
     height: 40px;
     font-size: 30px;
-    margin: 10px;
     color: #888888;
     background: #d3d3d3;
+    margin: 10px;
     border: #d3d3d3;
     border-radius: 100%;
 }
-input {
-    font-size: 20px;
-}
+
 footer {
     height: 65px;
+    text-align: center;
     background-color: #e1eec1;
     color: black;
 }
-footer ul {
-    
+
+.sum {
+    display: inline-block;
+    font-size: 23px;
+    margin: 10px;
 }
 
-footer li {
-    font-size: 23px;
-    width: 25%;
+.result {
+    font-size: 30px;
 }
