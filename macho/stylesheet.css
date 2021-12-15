@@ -74,7 +74,7 @@ li {
 }
 
 .en {
-    font-size: 18px;
+    font-size: 20px;
     padding-left: 5px;
 }
 
@@ -83,12 +83,15 @@ li {
 }
 
 input[type="text"] {
-    font-size: 15px;
+    font-size: 20px;
     line-height: 40px;
+
 }
 input[type="number"] {
-    font-size: 15px;
+    font-size: 20px;
     line-height: 40px;
+    text-align: right;
+
 }
 
 .price {
@@ -125,11 +128,10 @@ footer {
 
 .sum {
     display: inline-block;
-    font-size: 23px;
+    font-size: 25px;
     margin: 10px;
 }
 
 .result {
     font-size: 30px;
-    text-align: right;
 }

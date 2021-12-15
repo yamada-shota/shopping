@@ -25,13 +25,17 @@
         width: 20%;
     }
     .en {
-        font-size: 15px;
+        font-size: 12px;
         padding-left: 2px;
     }
     .sp {
-        display: none;
+        display: inline-block;
     }
     input[type="text"] {
+        font-size: 10px;
+        line-height: 15px;
+    }
+    input[type="number"] {
         font-size: 10px;
         line-height: 15px;
     }
