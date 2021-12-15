@@ -84,7 +84,11 @@ li {
 
 input[type="text"] {
     font-size: 15px;
-    line-height: 35px;
+    line-height: 40px;
+}
+input[type="number"] {
+    font-size: 15px;
+    line-height: 40px;
 }
 
 .price {
@@ -96,9 +100,9 @@ input[type="text"] {
 }
 
 .quantity {
-    font-size: 10px;
+    font-size: 15px;
     width: 30%;
-    height: 40px;
+    line-height: 40px;
 }
 
 .pls {
@@ -127,4 +131,5 @@ footer {
 
 .result {
     font-size: 30px;
+    text-align: right;
 }
