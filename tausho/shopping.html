@@ -13,71 +13,87 @@
         WEBお買い物計算メモ
     </header>
 
-    <div id="table">
+    <div id="app">
         <table>
             <tr>
                 <th></th>
                 <th>商品名</th>
                 <th>税抜価格</th>
                 <th>税率</th>
-                <th>税込価格</th>
+                <th>個数</th>
             </tr>
-            <tr v-for="(form, index) in forms">
+            <tr v-for="(item, index) in items">
                 <td><button v-on:click="deleteForm(index)">×</button></td>
-                <td><input v-model="forms[index]" type="text"></td>
-                <td><input type="number" v-model="prices[index]"></td>
+                <td><input type="text" v-model="item.name"></td>
+                <td><input type="number" v-model="item.price"></td>
                 <td>
                     <ul>
                         <li>
-                            <input type="radio" v-bind:name="names[index]" v-model="taxRates[index]" value="1.08"
-                                checked="checked">
+                            <input type="radio" value="1.08" v-bind:name="item.radioClassName" v-model="item.radio">8%
                         </li>
+                            
                         <li>
-                            <input type="radio" v-bind:name="names[index]" v-model="taxRates[index]" value="1.1">
+                            <input type="radio" value="1.1" v-bind:name="item.radioClassName" v-model="item.radio">10%
                         </li>
                     </ul>
                 </td>
-                <td>{{prices[index]>0 ? Math.round(prices[index]*taxRates[index]*100)/100 : 0}}</td>
+                <td>
+                    <input type="number" v-model="item.quantity">
+                </td>
             </tr>
         </table>
-        <button @click="addForm()">フォーム追加</button>
-        <br>
-        forms:{{forms}}
-        <br>
-        prices:{{prices}}
-        <br>
-        taxRates:{{taxRates}}
-        <br>
-        names:{{names}}
+        <button v-on:click="addForm()">フォーム追加</button>
 
+        <p>合計金額(税抜) : {{calcurateSumNotIncludingTax}}円</p>
+        <p>合計金額(税込) : {{calcurateSumIncludingTax}}円</p>
+
+        items : {{items}}
 
     </div>
-
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 
     <script>
+        let count = 0;
+
         new Vue({
-            el: "#table",
-            data: {
-                count: 0,
-                forms: [],
-                prices: [],
-                names: [],
-                taxRates: []
+            el: "#app",
+            data(){
+                return{
+                    items:[{
+                        name:"",
+                        price:"",
+                        radio:"1.08",
+                        radioClassName:`tax${count}`,
+                        quantity:""
+                    }]
+                };
             },
             methods: {
                 addForm() {
-                    this.forms.push('');
-                    this.count++;
-                    this.names.push(`tax${this.count}`);
-                    this.taxRates.push(1.08);
+                    count++;
+                    this.items.push({
+                        name:"",
+                        price:"",
+                        radio:"1.08",
+                        radioClassName:`tax${count}`,
+                        quantity:""
+                    });
                 },
                 deleteForm(index) {
-                    this.forms.splice(index, 1);
-                    this.prices.splice(index, 1);
-                    this.names.splice(index, 1);
-                    this.taxRates.splice(index, 1);
+                    this.items.splice(index,1);
+                }
+            },
+            computed:{
+                calcurateSumNotIncludingTax:function(){
+                    let sum = 0;
+                    this.items.forEach(item=>{sum+=parseInt(item.price*item.quantity)});
+                    return sum;
+                },
+                calcurateSumIncludingTax:function(){
+                    let sum = 0;
+                    this.items.forEach(item=>{sum+=parseInt(item.price*item.quantity*item.radio)});
+                    return parseInt(sum);
                 }
             }
         });
