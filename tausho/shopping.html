@@ -29,11 +29,11 @@
                 <td>
                     <ul>
                         <li>
-                            <input type="radio" value="1.08" v-bind:name="item.radioClassName" v-model="item.radio">8%
+                            <input type="radio" value="1.08" v-bind:name="'tax' + index" v-model="item.radio">8%
                         </li>
                             
                         <li>
-                            <input type="radio" value="1.1" v-bind:name="item.radioClassName" v-model="item.radio">10%
+                            <input type="radio" value="1.1" v-bind:name="'tax' + index" v-model="item.radio">10%
                         </li>
                     </ul>
                 </td>
@@ -54,8 +54,6 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 
     <script>
-        let count = 0;
-
         new Vue({
             el: "#app",
             data(){
@@ -64,19 +62,16 @@
                         name:"",
                         price:"",
                         radio:"1.08",
-                        radioClassName:`tax${count}`,
                         quantity:""
                     }]
                 };
             },
             methods: {
                 addForm() {
-                    count++;
                     this.items.push({
                         name:"",
                         price:"",
                         radio:"1.08",
-                        radioClassName:`tax${count}`,
                         quantity:""
                     });
                 },
