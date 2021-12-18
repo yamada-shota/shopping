@@ -3,128 +3,63 @@
 }
 
 body {
-    font-family: "ヒラギノ丸ゴ Pro W4", "ヒラギノ丸ゴ Pro", "Hiragino Maru Gothic Pro", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "HG丸ｺﾞｼｯｸM-PRO", "HGMaruGothicMPRO";
-}
-
-header {
-    height: 65px;
-    background-color: #e1eec1;
-    color: black;
-}
-
-header h1 {
-    font-size: 33px;
-    text-align: center;
-    line-height: 65px;
+    margin: 0px;
 }
 
 .container {
-    max-width: 1170px;
-    width: 100%;
-    padding: 0 20px;
-    margin: auto;
-}
-
-ul {
+    font-family: "ヒラギノ丸ゴ Pro W4", "ヒラギノ丸ゴ Pro", "Hiragino Maru Gothic Pro";
     display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     text-align: center;
 }
 
-li {
-    list-style: none;
+header {
+    background-color: rgb(75, 75, 75);
+    color: rgb(255, 255, 255);
+    width: 100%;
 }
 
-.title {
-    border-bottom: 1px solid #888888;
-}
-
-.title ul {
-    padding: 0;
-}
-
-.title li {
-    font-size: 20px;
-    width: 20%;
-}
-
-.dlt {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
+h1 {
     font-size: 30px;
-    color: white;
-    margin: 10px;
-    transition: all 2s;
-    background: rgb(252, 145, 133);
-    border: rgb(252, 145, 133);
-    border-radius: 100%;
+    margin: 0px;
 }
 
-.form {
-    border-bottom: 1px solid #888888;
+table {
+    margin: auto;
+    white-space: nowrap;
 }
 
-.form ul {
-    padding: 0;
+th, td {
+    padding: 0px 10px;
 }
 
-.form li {
-    display: inline-block;
-    width: 20%;
+
+.taxRadio {
+    display: block;
+    text-align: left;
 }
 
-.en {
-    font-size: 18px;
-    padding-left: 5px;
-}
-
-.sp {
-    display: none;
-}
-
-input[type="text"] {
-    font-size: 15px;
-    line-height: 35px;
-}
-
-.price {
-    width: 70%;
-}
-
-.priceIncludingTax {
-    width: 70%;
+.name, .price {
+    width: 5em;
 }
 
 .quantity {
-    font-size: 10px;
-    width: 30%;
-    height: 40px;
+    width: 3em;
 }
 
-.pls {
-    width: 40px;
-    height: 40px;
-    font-size: 30px;
-    color: #888888;
-    background: #d3d3d3;
-    margin: 10px;
-    border: #d3d3d3;
-    border-radius: 100%;
+h2, p {
+    margin: 0px;
 }
 
 footer {
-    height: 65px;
-    text-align: center;
-    background-color: #e1eec1;
-    color: black;
-}
-
-.sum {
-    display: inline-block;
-    font-size: 23px;
-    margin: 10px;
-}
-
-.result {
-    font-size: 30px;
+    background-color: rgb(75, 75, 75);
+    color: rgb(255, 255, 255);
+    width: 100%;
+    margin-top: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 10px;
 }
