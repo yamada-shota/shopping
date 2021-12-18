@@ -5,50 +5,49 @@
     <meta charset="UTF-8">
     <title>WEBお買い物計算メモ</title>
     <link rel="stylesheet" href="stylesheet.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
+    <div id="app" class="container">
+        <header>
+            <h1>WEBお買い物計算メモ</h1>
+        </header>
 
-    <header>
-        WEBお買い物計算メモ
-    </header>
+        <main>
+            <table>
+                <tr>
+                    <th></th>
+                    <th>商品名</th>
+                    <th>税抜価格</th>
+                    <th>税率</th>
+                    <th>個数</th>
+                </tr>
+                <tr v-for="(item, index) in items">
+                    <td><button v-on:click="deleteForm(index)">×</button></td>
+                    <td><input class="name" v-model="item.name"></td>
+                    <td><input class="price" type="number" v-model="item.price">円</td>
+                    <td>
+                        <span class="taxRadio"><input type="radio" value="1.08" v-bind:name="'tax' + index"
+                                v-model="item.radio">8%</span>
+                        <span class="taxRadio"><input type="radio" value="1.1" v-bind:name="'tax' + index"
+                                v-model="item.radio">10%</span>
+                    </td>
+                    <td>
+                        <input type="number" class="quantity" v-model="item.quantity">個
+                    </td>
+                </tr>
+            </table>
+            <button v-on:click="addForm()">商品を追加</button>
+        </main>
 
-    <div id="app">
-        <table>
-            <tr>
-                <th></th>
-                <th>商品名</th>
-                <th>税抜価格</th>
-                <th>税率</th>
-                <th>個数</th>
-            </tr>
-            <tr v-for="(item, index) in items">
-                <td><button v-on:click="deleteForm(index)">×</button></td>
-                <td><input type="text" v-model="item.name"></td>
-                <td><input type="number" v-model="item.price"></td>
-                <td>
-                    <ul>
-                        <li>
-                            <input type="radio" value="1.08" v-bind:name="'tax' + index" v-model="item.radio">8%
-                        </li>
-                            
-                        <li>
-                            <input type="radio" value="1.1" v-bind:name="'tax' + index" v-model="item.radio">10%
-                        </li>
-                    </ul>
-                </td>
-                <td>
-                    <input type="number" v-model="item.quantity">
-                </td>
-            </tr>
-        </table>
-        <button v-on:click="addForm()">フォーム追加</button>
-
-        <p>合計金額(税抜) : {{calcurateSumNotIncludingTax}}円</p>
-        <p>合計金額(税込) : {{calcurateSumIncludingTax}}円</p>
-
-        items : {{items}}
-
+        <footer>
+            <h2>総計</h2>
+            <div class="displaySum">
+                <p>{{calcurateSumNotIncludingTax}}円(税抜)</p>
+                <p>{{calcurateSumIncludingTax}}円(税込)</p>
+            </div>
+        </footer>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
@@ -56,39 +55,46 @@
     <script>
         new Vue({
             el: "#app",
-            data(){
-                return{
-                    items:[{
-                        name:"",
-                        price:"",
-                        radio:"1.08",
-                        quantity:""
+            data() {
+                return {
+                    items: [{
+                        name: "",
+                        price: "",
+                        radio: "1.08",
+                        quantity: ""
                     }]
                 };
             },
             methods: {
                 addForm() {
                     this.items.push({
-                        name:"",
-                        price:"",
-                        radio:"1.08",
-                        quantity:""
+                        name: "",
+                        price: "",
+                        radio: "1.08",
+                        quantity: ""
                     });
                 },
                 deleteForm(index) {
-                    this.items.splice(index,1);
+                    if (this.items.length >= 2) {
+                        this.items.splice(index, 1);
+                    } else {
+                        this.items[0].name = "";
+                        this.items[0].price = "";
+                        this.items[0].radio = "1.08";
+                        this.items[0].quantity = "";
+                    }
                 }
             },
-            computed:{
-                calcurateSumNotIncludingTax:function(){
+            computed: {
+                calcurateSumNotIncludingTax: function () {
                     let sum = 0;
-                    this.items.forEach(item=>{sum+=parseInt(item.price*item.quantity)});
-                    return sum;
+                    this.items.forEach(item => { sum += parseInt(item.price * item.quantity) });
+                    return String(sum).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
                 },
-                calcurateSumIncludingTax:function(){
+                calcurateSumIncludingTax: function () {
                     let sum = 0;
-                    this.items.forEach(item=>{sum+=parseInt(item.price*item.quantity*item.radio)});
-                    return parseInt(sum);
+                    this.items.forEach(item => { sum += parseInt(item.price * item.quantity * item.radio) });
+                    return String(parseInt(sum)).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
                 }
             }
         });
