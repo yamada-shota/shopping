@@ -26,7 +26,7 @@
                 <tr v-for="(item, index) in items">
                     <td><a href="#" class="btn delete" v-on:click="deleteForm(index)">ー</a></td>
                     <td><input class="name" v-model="item.name"></td>
-                    <td><input class="price" type="number" v-model="item.price"><span class="unit">円</span></td>
+                    <td><input class="price" type="tel" v-model="item.price"><span class="unit">円</span></td>
                     <td>
                         <span class="taxRadio"><input type="radio" value="1.08" v-bind:name="'tax' + index"
                                 v-model="item.radio">8%</span>
@@ -34,7 +34,7 @@
                                 v-model="item.radio">10%</span>
                     </td>
                     <td>
-                        <input type="number" class="quantity" v-model="item.quantity"><span class="unit">個</span>
+                        <input type="tel" class="quantity" v-model="item.quantity"><span class="unit">個</span>
                     </td>
                 </tr>
             </table>
