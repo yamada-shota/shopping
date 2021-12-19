@@ -15,7 +15,7 @@ body {
 }
 
 header {
-    background-color: rgb(75, 75, 75);
+    background-color: #001d3d;
     color: rgb(255, 255, 255);
     width: 100%;
 }
@@ -28,10 +28,13 @@ h1 {
 table {
     margin: auto;
     white-space: nowrap;
+    border-collapse: collapse;
+
 }
 
 th, td {
     padding: 0px 10px;
+    border-bottom: 1px solid rgb(177, 177, 177);
 }
 
 
@@ -40,7 +43,11 @@ th, td {
     text-align: left;
 }
 
-.name, .price {
+.name {
+    width: 5em;
+}
+
+.price {
     width: 5em;
 }
 
@@ -48,18 +55,54 @@ th, td {
     width: 3em;
 }
 
+.unit {
+    padding-left: 5px;
+}
+
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    background: #003772;
+    color: #FFF;
+    border-radius: 50%;
+    text-align: center;
+    overflow: hidden;
+    transition: .4s;
+}
+
+.btn:hover {
+    background: #004ea1;
+}
+
+.add {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 30px;
+    margin:10px 0px
+}
+
+
+.delete {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    vertical-align: middle;
+}
+
+
 h2, p {
     margin: 0px;
 }
 
 footer {
-    background-color: rgb(75, 75, 75);
+    background-color: #001d3d;
     color: rgb(255, 255, 255);
     width: 100%;
     margin-top: auto;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
     justify-content: space-between;
     padding: 0px 10px 250px 10px;
 }

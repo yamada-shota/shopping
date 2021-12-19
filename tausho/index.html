@@ -24,9 +24,9 @@
                     <th>個数</th>
                 </tr>
                 <tr v-for="(item, index) in items">
-                    <td><button v-on:click="deleteForm(index)">×</button></td>
+                    <td><a href="#" class="btn delete" v-on:click="deleteForm(index)">ー</a></td>
                     <td><input class="name" v-model="item.name"></td>
-                    <td><input class="price" type="number" v-model="item.price">円</td>
+                    <td><input class="price" type="number" v-model="item.price"><span class="unit">円</span></td>
                     <td>
                         <span class="taxRadio"><input type="radio" value="1.08" v-bind:name="'tax' + index"
                                 v-model="item.radio">8%</span>
@@ -34,11 +34,13 @@
                                 v-model="item.radio">10%</span>
                     </td>
                     <td>
-                        <input type="number" class="quantity" v-model="item.quantity">個
+                        <input type="number" class="quantity" v-model="item.quantity"><span class="unit">個</span>
                     </td>
                 </tr>
             </table>
-            <button v-on:click="addForm()">商品を追加</button>
+   
+            <a href="#" class="btn add" v-on:click="addForm()">＋</a>
+
         </main>
 
         <footer>
