@@ -24,7 +24,7 @@
                     <th>個数</th>
                 </tr>
                 <tr v-for="(item, index) in items">
-                    <td><a href="#" class="btn delete" v-on:click="deleteForm(index)">ー</a></td>
+                    <td><button class="btn delete" v-on:click="deleteForm(index)">ー</button></td>
                     <td><input class="name" v-model="item.name"></td>
                     <td><input class="price" type="tel" v-model="item.price"><span class="unit">円</span></td>
                     <td>
@@ -39,7 +39,8 @@
                 </tr>
             </table>
    
-            <a href="#" class="btn add" v-on:click="addForm()">＋</a>
+            <button class="btn add" v-on:click="addForm()">＋</button> 
+            
 
         </main>
 
@@ -60,6 +61,7 @@
             data() {
                 return {
                     items: [{
+                        id:"0",
                         name: "",
                         price: "",
                         radio: "1.08",
