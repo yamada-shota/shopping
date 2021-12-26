@@ -70,7 +70,6 @@ th, td {
     overflow: hidden;
     vertical-align: middle;
     -webkit-touch-callout:none;
-    -webkit-user-select:none;
 }
 
 .btn:hover {
