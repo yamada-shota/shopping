@@ -63,16 +63,14 @@ th, td {
 .btn {
     display: inline-block;
     text-decoration: none;
-    border: none;
-	outline: none;
-	appearance: none;
     background: #003772;
     color: #FFF;
-    padding: 0px;
     border-radius: 50%;
     text-align: center;
     overflow: hidden;
     vertical-align: middle;
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
 }
 
 .btn:hover {
@@ -82,7 +80,7 @@ th, td {
 .add {
     width: 40px;
     height: 40px;
-    line-height: 43px;
+    line-height: 40px;
     font-size: 30px;
     margin:10px 0px
 }
@@ -91,7 +89,7 @@ th, td {
 .delete {
     width: 20px;
     height: 20px;
-    line-height: 22px;
+    line-height: 20px;
 }
 
 
