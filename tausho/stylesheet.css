@@ -68,7 +68,9 @@ th, td {
     border-radius: 50%;
     text-align: center;
     overflow: hidden;
-    transition: .4s;
+    vertical-align: middle;
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
 }
 
 .btn:hover {
@@ -88,7 +90,6 @@ th, td {
     width: 20px;
     height: 20px;
     line-height: 20px;
-    vertical-align: middle;
 }
 
 
