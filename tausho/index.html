@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>WEBお買い物計算メモ</title>
+    <title>経費ギリギリくん</title>
     <link rel="stylesheet" href="stylesheet.css">
     <link rel="icon" href="calcurator.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +12,7 @@
 <body>
     <div id="app" class="container">
         <header>
-            <h1>WEBお買い物計算メモ</h1>
+            <h1>経費ギリギリくん</h1>
         </header>
 
         <main>
@@ -23,9 +23,10 @@
                     <th>税抜価格</th>
                     <th>税率</th>
                     <th>個数</th>
+                    <th>割引率</th>
                 </tr>
                 <tr v-for="(item, index) in items">
-                    <td><a href="#" class = "btn delete" v-on:click="deleteForm(index)">ー</a></td>
+                    <td><a href="#" class="btn delete" v-on:click="deleteForm(index)">ー</a></td>
                     <td><input class="name" v-model="item.name"></td>
                     <td><input class="price" type="tel" v-model="item.price"></td>
                     <td>
@@ -35,24 +36,38 @@
                                 v-model="item.radio">10%</span>
                     </td>
                     <td>
-                        <a href="#" class = "btn increment" v-on:click="decrementNum(index)">ー</a>
+                        <a href="#" class="btn increment" v-on:click="decrementNum(index)">ー</a>
                         {{item.quantity}}
-                        <a href="#" class = "btn decrement" v-on:click="incrementNum(index)">＋</a>
+                        <a href="#" class="btn decrement" v-on:click="incrementNum(index)">＋</a>
                     </td>
+                    <td> <input class="discountRate" type="tel" v-model="item.discountRate" maxlength="2">%</td>
                 </tr>
             </table>
-   
-            <a href="#" class="btn add" v-on:click="addForm()">＋</a> 
-            
+
+            <a href="#" class="btn add" v-on:click="addForm()">＋</a>
+
 
         </main>
 
         <footer>
-            <h2>総計</h2>
-            <div class="displaySum">
-                <p>{{calcurateSumNotIncludingTax}}円(税抜)</p>
-                <p>{{calcurateSumIncludingTax}}円(税込)</p>
+            <div class="sum">
+                <p>レジ支払い</p>
+                <div>
+                    <p>{{calcurateSumNotIncludingTax}}円(税抜)</p>
+                    <p>{{calcurateSumIncludingTax}}円(税込)</p>
+                </div>
             </div>
+            <hr>
+            <div class="sum">
+                <p>8%申請</p>
+                <p>{{calcurateSumNotIncludingTax_8}}円(税抜)</p>
+            </div>
+            <hr>
+            <div class="sum">
+                <p>10%申請</p>
+                <p>{{calcurateSumNotIncludingTax_10}}円(税抜)</p>
+            </div>
+
         </footer>
     </div>
 
@@ -67,7 +82,8 @@
                         name: "",
                         price: "",
                         radio: "1.08",
-                        quantity: "0"
+                        quantity: "0",
+                        discountRate: "0"
                     }]
                 };
             },
@@ -77,7 +93,8 @@
                         name: "",
                         price: "",
                         radio: "1.08",
-                        quantity: "0"
+                        quantity: "0",
+                        discountRate: "0"
                     });
                 },
                 deleteForm(index) {
@@ -88,13 +105,14 @@
                         this.items[0].price = "";
                         this.items[0].radio = "1.08";
                         this.items[0].quantity = "0";
+                        this.items[0].discountRate = "0";
                     }
                 },
-                incrementNum(index){
+                incrementNum(index) {
                     this.items[index].quantity = parseInt(this.items[index].quantity) + 1;
                 },
-                decrementNum(index){
-                    if(parseInt(this.items[index].quantity)>0){
+                decrementNum(index) {
+                    if (parseInt(this.items[index].quantity) > 0) {
                         this.items[index].quantity = parseInt(this.items[index].quantity) - 1;
                     }
                 }
@@ -102,13 +120,23 @@
             computed: {
                 calcurateSumNotIncludingTax: function () {
                     let sum = 0;
-                    this.items.forEach(item => { sum += parseInt(item.price * item.quantity) });
-                    return String(sum).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+                    this.items.forEach(item => { sum += parseFloat(item.price * item.quantity * ((100 - item.discountRate) / 100)) });
+                    return String(parseInt(sum)).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
                 },
                 calcurateSumIncludingTax: function () {
                     let sum = 0;
-                    this.items.forEach(item => { sum += parseInt(item.price * item.quantity * item.radio) });
+                    this.items.forEach(item => { sum += parseFloat(item.price * item.quantity * item.radio * ((100 - item.discountRate) / 100)) });
                     return String(parseInt(sum)).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+                },
+                calcurateSumNotIncludingTax_8: function () {
+                    let sum = 0;
+                    this.items.forEach(item => { sum += parseFloat(item.price * item.quantity * item.radio * ((100 - item.discountRate) / 100)) });
+                    return String(Math.ceil(parseInt(sum) / 1.08)).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+                },
+                calcurateSumNotIncludingTax_10: function () {
+                    let sum = 0;
+                    this.items.forEach(item => { sum += parseFloat(item.price * item.quantity * item.radio * ((100 - item.discountRate) / 100)) });
+                    return String(Math.ceil(parseInt(sum) / 1.1)).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
                 }
             }
         });
