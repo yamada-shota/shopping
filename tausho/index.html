@@ -131,12 +131,12 @@
                 calcurateSumNotIncludingTax_8: function () {
                     let sum = 0;
                     this.items.forEach(item => { sum += parseFloat(item.price * item.quantity * item.radio * ((100 - item.discountRate) / 100)) });
-                    return String(Math.ceil(parseInt(sum) / 1.08)).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+                    return String(parseInt(parseInt(sum) / 1.08)).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
                 },
                 calcurateSumNotIncludingTax_10: function () {
                     let sum = 0;
                     this.items.forEach(item => { sum += parseFloat(item.price * item.quantity * item.radio * ((100 - item.discountRate) / 100)) });
-                    return String(Math.ceil(parseInt(sum) / 1.1)).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+                    return String(parseInt(parseInt(sum) / 1.1)).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
                 }
             }
         });
