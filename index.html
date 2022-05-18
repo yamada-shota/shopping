@@ -26,7 +26,8 @@
                     <th>割引率</th>
                 </tr>
                 <tr v-for="(item, index) in items">
-                    <td><a href="#" class="btn delete" v-on:click="deleteForm(index)">ー</a></td>
+                    <!-- <td><a href="#" class="btn delete" v-on:click="deleteForm(index)">ー</a></td> -->
+                    <td><button class="btn delete" v-on:click="deleteForm(index)">ー</button></td>
                     <td><input class="name" v-model="item.name"></td>
                     <td><input class="price" type="tel" v-model="item.price"></td>
                     <td>
@@ -36,16 +37,15 @@
                                 v-model="item.radio">10%</span>
                     </td>
                     <td>
-                        <a href="#" class="btn increment" v-on:click="decrementNum(index)">ー</a>
+                        <button class="btn increment" v-on:click="decrementNum(index)">ー</button>
                         {{item.quantity}}
-                        <a href="#" class="btn decrement" v-on:click="incrementNum(index)">＋</a>
+                        <button class="btn decrement" v-on:click="incrementNum(index)">＋</button>
                     </td>
                     <td> <input class="discountRate" type="tel" v-model="item.discountRate" maxlength="2">%</td>
                 </tr>
             </table>
 
-            <a href="#" class="btn add" v-on:click="addForm()">＋</a>
-
+            <button class="btn add" v-on:click="addForm()">＋</button>
 
         </main>
 
